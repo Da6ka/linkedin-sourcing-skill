@@ -32,7 +32,16 @@ LinkedIn monitors for automated or bot-like behavior. To keep your account safe 
 
 **Don't violate LinkedIn's Terms of Service.** The skill operates your browser just like a human would — it clicks, types, and navigates. However, LinkedIn still prohibits automated scraping and mass actions.
 
-**Avoid high-volume actions in bulk.** Sending many connection requests, messages, or profile views in rapid succession are the most common triggers for restrictions. Keep volumes low and space out such actions.
+**Avoid high-volume actions in bulk.** LinkedIn enforces the following limits (as of 2025):
+
+| Action | Free account | Paid account | Safe daily pace |
+|---|---|---|---|
+| Connection requests | ~80–100/week | ~100/week | 15–20/day |
+| Messages to connections | ~100/week | ~150/week | 15–20/day |
+| Profile views | 500/day | 2,000/day | Stay under 50% (~250/day free, ~1,000/day paid) |
+| Pending unaccepted invites | 2,500 total | 2,500 total | Withdraw old ones regularly |
+
+Sending requests or messages in rapid bursts (even within these caps) can trigger spam filters. Space actions out and avoid running long uninterrupted sessions.
 
 **Don't scrape or export data at scale.** Extracting large amounts of profile data, contact lists, or company information is a primary reason LinkedIn blocks accounts. Use the skill only for targeted, purposeful lookups.
 
