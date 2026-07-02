@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-07-02 — Cowork step is now opt-in
+
+- Split the workflow into a safe default and an explicit opt-in: the Google X-ray search
+  (Part B) is the complete deliverable and involves no LinkedIn account activity; the Cowork
+  profile-collection instruction is no longer printed automatically. After the profile table,
+  the skill now offers the Cowork step with a plain risk disclaimer (mirroring the README's
+  account-restriction warnings) and generates the instruction block only if the user says yes
+
 ## 2026-07-02 — greeting and scenario menu
 
 - The skill now opens every run with a short greeting. If the user already pasted a JD or

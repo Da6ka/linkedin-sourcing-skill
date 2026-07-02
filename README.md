@@ -8,7 +8,7 @@ When triggered (e.g. by pasting a JD, asking to "find candidates", "source for t
 
 1. Synthesizes the role/briefing into a candidate persona
 2. Finds real LinkedIn profiles via web search
-3. Optionally collects full profile text into a candidate tracker via the [Cowork](https://claude.com/product/cowork) browser (requires Cowork and a logged-in LinkedIn session — see Part C in `SKILL.md`; skipped gracefully otherwise)
+3. Offers an optional, opt-in step to collect full profile text into a candidate tracker via the [Cowork](https://claude.com/product/cowork) browser — presented with a risk disclaimer and only generated if you say yes (requires Cowork and a logged-in LinkedIn session; see Part C in `SKILL.md` and "Avoiding LinkedIn account restrictions" below)
 4. Scores candidates against the persona
 5. Drafts personalized outreach messages
 

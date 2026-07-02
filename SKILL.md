@@ -201,11 +201,32 @@ tweak them.
 
 ---
 
-#### Part C: LinkedIn profile verification and saving with Cowork
+#### Part C: Optional profile collection with Cowork — opt-in only
 
-After presenting the profile table in chat, give the user this ready-to-use Cowork instruction.
-Cowork will open each profile in the browser (user must be logged into LinkedIn), extract the
-full text, and save everything into one candidate tracker file.
+The Google X-ray results from Part B are the complete, safe deliverable: they involve no
+LinkedIn account activity at all. Many recruiters are (rightly) cautious about LinkedIn's
+scraping rules, so do NOT output the Cowork instruction block by default.
+
+Instead, after the profile table, make a short offer with a plain risk disclaimer:
+
+```
+**Optional next step — collect full profiles via Cowork.** I can generate a ready-made
+instruction for Cowork to open each High/Medium-confidence profile in your browser and save
+the full text into one tracker file.
+
+Before you decide: this step visits LinkedIn profiles from your logged-in account. LinkedIn's
+User Agreement prohibits automated scraping, and automated profile visits may put your
+account at risk. The instruction stays within conservative limits (max 15–20 profiles per
+batch, spread across the day), but there is no guarantee — see "Avoiding LinkedIn account
+restrictions" in the README. If you'd rather stay fully manual, the results above are already
+usable: open the profiles yourself and paste any of them back here for scoring and outreach.
+
+Want the Cowork instruction? Say yes and I'll generate it.
+```
+
+**Only if the user opts in**, generate the instruction block below. Cowork will open each
+profile in the browser (user must be logged into LinkedIn), extract the full text, and save
+everything into one candidate tracker file.
 
 **Pacing:** to stay within LinkedIn's own limits (see README — ~250–1,000 profile views/day
 is the safe ceiling), never ask Cowork to visit more than **15–20 profiles in one instruction**.
@@ -217,9 +238,9 @@ table in the Cowork instruction. Visiting Low-confidence profiles spends the use
 profile-view quota on likely mismatches — leave them out by default and note that the user
 can add any Low-confidence rows deliberately if they want them collected too.
 
-**Instruction to include in your output, after the profile table.** Replace the bracketed
-placeholder with the actual profile URLs from the table — the block must be ready for the
-user to copy-paste as-is:
+**Instruction to output once the user has opted in.** Replace the bracketed placeholder with
+the actual profile URLs from the table — the block must be ready for the user to copy-paste
+as-is:
 
 ```
 ## Collect profiles and save the tracker via Cowork
