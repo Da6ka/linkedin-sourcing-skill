@@ -175,6 +175,11 @@ is the safe ceiling), never ask Cowork to visit more than **15–20 profiles in 
 If the table has more than that, tell the user to run this instruction in batches spread across
 the day rather than all at once.
 
+**Which profiles to include:** list only the High- and Medium-confidence profiles from the
+table in the Cowork instruction. Visiting Low-confidence profiles spends the user's daily
+profile-view quota on likely mismatches — leave them out by default and note that the user
+can add any Low-confidence rows deliberately if they want them collected too.
+
 **Instruction to include in your output, after the profile table.** Replace the bracketed
 placeholder with the actual profile URLs from the table — the block must be ready for the
 user to copy-paste as-is:

@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-07-02 — behavioral test round (6 live headless runs)
+
+Tested the skill end-to-end in fresh Claude Code sessions: default JD run, rare-role honesty,
+positive/negative triggering, non-English JD with no web search tool, and a prompt-injection
+attempt embedded in a pasted profile. All six passed — no fabricated URLs (every profile link
+was verified to appear verbatim in the live search results), search budget respected, honest
+under-target reporting, correct language matching, graceful no-search fallback, and the
+injection was flagged and ignored. One fix from the round:
+
+- **Quota hygiene:** the Cowork collection block previously included every profile from the
+  table, Low-confidence rows included. It now lists only High/Medium-confidence profiles by
+  default, so profile-view quota isn't spent on likely mismatches
+
 ## 2026-07-02 — post-publication review fixes
 
 Fixes from a team-lead-style review of the published repo:
