@@ -30,7 +30,7 @@ git clone https://github.com/Da6ka/linkedin-sourcing-skill.git ~/.claude/skills/
 
 Restart Claude Code (or start a new session) and the skill will be available automatically — Claude triggers it when you paste a JD or ask to source/outreach on LinkedIn.
 
-To confirm it loaded, run `/skills` in Claude Code and check that `linkedin-sourcing` appears in the list, or just paste a job description and ask "source candidates for this role" — the skill should pick it up on its own.
+To confirm it loaded, start a new session and check that `linkedin-sourcing` shows up among your available skills — or just paste a job description and ask "source candidates for this role" — the skill should pick it up on its own.
 
 To update an existing install (the clone above fails if the folder already exists):
 

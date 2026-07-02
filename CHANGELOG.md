@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-07-03 — release-audit fixes
+
+Fixes from a pre-release audit; no workflow changes:
+
+- **Validator:** `validate-skill.mjs` now resolves its own path via `fileURLToPath` instead of
+  `new URL(...).pathname`. The old form percent-encoded spaces (and mangled Windows drive paths),
+  crashing the validator with an uncaught `ENOENT` on any checkout whose path contains a space —
+  a case CI never caught because the runner path has none.
+- **README:** dropped the `/skills` confirmation command (not a real Claude Code slash command) in
+  favour of a version-agnostic "start a new session / just paste a JD" check.
+- **SKILL.md:** tightened the `description` frontmatter (kept every trigger phrase and the negative
+  scope, trimmed redundancy).
+- **Outreach examples:** every example message in `references/outreach-examples.md` now includes the
+  mid-message source mention (`your LinkedIn profile`) that Module 4 mandates as the GDPR Article 14
+  notice — previously the rule was stated but not modelled by a single example.
+- **Length guidance:** reconciled `outreach-examples.md` with SKILL.md so both frame 80–120 words the
+  same way, and noted that the examples are skeletons a finished message expands to fill.
+
 ## 2026-07-02 — UX review fixes
 
 Fixes from a UX pass over onboarding, wording, confirmations, formatting, accessibility, dead

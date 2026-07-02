@@ -1,14 +1,14 @@
 ---
 name: linkedin-sourcing
 description: >
-  Use this skill when the user wants to source or find candidates on LinkedIn, build a talent pipeline
-  or search for a role, or write recruiter outreach to prospective candidates. Triggers include: pasting a
-  job description or briefing to find matching people, or asking to "find candidates", "source for this role",
-  "build a search", "find people on LinkedIn", or "write outreach" to candidates. Use it whenever the user
-  provides a JD, briefing doc, example profiles, or company context and wants help identifying or contacting
-  target talent — even if they don't explicitly mention LinkedIn. Do NOT use it for the other side of the
-  hiring funnel — interview prep, scorecards, offers, comp, or onboarding — or for improving the user's own
-  LinkedIn profile, resume, or job application; those are separate workflows.
+  Use when the user wants to source or find candidates on LinkedIn, build a talent pipeline for a role,
+  or write recruiter outreach to prospective candidates. Triggers include pasting a job description or
+  briefing to find matching people, or asking to "find candidates", "source for this role", "build a
+  search", "find people on LinkedIn", or "write outreach". Use it whenever the user provides a JD,
+  briefing, example profiles, or company context and wants help identifying or contacting target
+  talent — even without mentioning LinkedIn. Do NOT use it for the other side of the hiring funnel
+  (interview prep, scorecards, offers, comp, onboarding) or for improving the user's own profile,
+  resume, or job application — those are separate workflows.
 ---
 
 # LinkedIn Sourcing Skill
