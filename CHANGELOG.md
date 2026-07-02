@@ -1,6 +1,6 @@
 # Changelog
 
-## 2026-07-02 — UX review fixes (Phase 13)
+## 2026-07-02 — UX review fixes
 
 Fixes from a UX pass over onboarding, wording, confirmations, formatting, accessibility, dead
 ends, error messages, and consistency:
