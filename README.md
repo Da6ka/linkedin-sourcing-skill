@@ -30,6 +30,8 @@ git clone https://github.com/Da6ka/linkedin-sourcing-skill.git ~/.claude/skills/
 
 Restart Claude Code (or start a new session) and the skill will be available automatically — Claude triggers it when you paste a JD or ask to source/outreach on LinkedIn.
 
+To confirm it loaded, run `/skills` in Claude Code and check that `linkedin-sourcing` appears in the list, or just paste a job description and ask "source candidates for this role" — the skill should pick it up on its own.
+
 To update an existing install (the clone above fails if the folder already exists):
 
 ```bash
@@ -57,10 +59,15 @@ LinkedIn monitors for automated or bot-like behavior. To keep your account safe 
 
 | Action | Free account | Paid account | Safe daily pace |
 |---|---|---|---|
-| Connection requests | ~80–100/week | ~100/week | 10–15/day, max 5 days/week (~50–75/week) |
+| Connection requests | ~100/week | ~100/week | 10–15/day, max 5 days/week (~50–75/week) |
 | Messages to connections | ~100/week | ~150/week | 10–15/day, max 5 days/week (~50–75/week) |
 | Profile views | 500/day | 2,000/day | Stay under 50% (~250/day free, ~1,000/day paid) |
 | Pending unaccepted invites | 2,500 total | 2,500 total | Withdraw old ones regularly |
+
+Note on connection requests: LinkedIn's weekly invitation limit is applied account-wide and a
+paid tier (Premium, Sales Navigator, Recruiter Lite) does **not** raise it — the cap is roughly
+the same whether or not you pay. Premium mainly lifts the *profile view* and *messaging* ceilings,
+which is why those two rows differ by tier and this one doesn't.
 
 Sending requests or messages in rapid bursts (even within these caps) can trigger spam filters. Space actions out and avoid running long uninterrupted sessions.
 

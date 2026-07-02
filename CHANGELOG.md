@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-07-02 — repo polish for public sharing
+
+- **README fix:** the connection-requests row of the rate-limit table listed the paid cap
+  (~100/week) as no higher than the free range (~80–100/week), which read as if paying lowered
+  the limit. Corrected to ~100/week for both tiers, with a note that LinkedIn's weekly invitation
+  limit is account-wide and a paid tier doesn't lift it (Premium raises the profile-view and
+  messaging ceilings, not invites)
+- **README:** added a "confirm it loaded" tip to the install section (`/skills` or paste a JD)
+- **Contributor onboarding:** added `CONTRIBUTING.md`, GitHub issue templates (bug report,
+  triggering issue) and a pull-request template
+
 ## 2026-07-02 — staged delivery with two checkpoints
 
 - The full run no longer arrives as one giant response. It now pauses twice: after the
