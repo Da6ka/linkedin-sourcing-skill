@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-07-02
+
+Pre-release validation before sharing the skill publicly:
+
+- **Behavioral run:** exercised the full workflow end-to-end with a sample JD and live web
+  search. Real profile URLs come back when the search tool is actually called (verified), but
+  two defects surfaced and were fixed in `SKILL.md`:
+  - search results mix in `/jobs/`, `/posts/`, `/company/` URLs — added an explicit step to
+    keep only `/in/` profile URLs
+  - built-in web search can be region-limited (e.g. US-only) and skews non-US roles — added a
+    search-tool caveat and tied geographic match to the confidence rating
+- **Trigger accuracy:** tightened the `description` frontmatter — removed over-broad catch-alls
+  ("any recruiting research", "any variation of recruiting/headhunting workflow") that could
+  false-fire on adjacent tasks (interview prep, offers, own-profile editing), and added an
+  explicit "do NOT use for" clause
+- **Repo hygiene:** added an MIT `LICENSE`; softened the README's account-safety guarantee into
+  a disclaimer; marked the rate-limit figures as approximate/unofficial; added a
+  responsible-use section covering LinkedIn ToS and candidate-PII/GDPR responsibility
+
 ## 2026-07-01
 
 Fixed 8 issues found in a QA review of the skill (#1–#8), addressed in commit

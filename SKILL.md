@@ -1,12 +1,14 @@
 ---
 name: linkedin-sourcing
 description: >
-  Use this skill whenever the user wants to source candidates on LinkedIn, find LinkedIn profiles for a role,
-  build a talent pipeline, write outreach messages, or do any recruiting research. Triggers include: pasting a
-  job description, briefing notes, or asking to "find candidates", "source for this role", "build a search",
-  "write outreach", "find people on LinkedIn", or any variation of recruiting/headhunting workflow.
-  Always use this skill when the user provides a JD, briefing doc, example profiles, or company context
-  and wants help identifying or reaching target talent — even if they don't explicitly mention LinkedIn.
+  Use this skill when the user wants to source or find candidates on LinkedIn, build a talent pipeline
+  or search for a role, or write recruiter outreach to prospective candidates. Triggers include: pasting a
+  job description or briefing to find matching people, or asking to "find candidates", "source for this role",
+  "build a search", "find people on LinkedIn", or "write outreach" to candidates. Use it whenever the user
+  provides a JD, briefing doc, example profiles, or company context and wants help identifying or contacting
+  target talent — even if they don't explicitly mention LinkedIn. Do NOT use it for the other side of the
+  hiring funnel — interview prep, scorecards, offers, comp, or onboarding — or for improving the user's own
+  LinkedIn profile, resume, or job application; those are separate workflows.
 ---
 
 # LinkedIn Sourcing Skill
@@ -116,13 +118,21 @@ the user wants more, they can ask for another round.
 **How to search:**
 1. Build a targeted Google query: `site:linkedin.com/in "Job Title" "keyword" "location"`
 2. Run your web search tool with this query
-3. Extract all linkedin.com/in/ URLs from the results
+3. Keep only individual profile URLs — i.e. `linkedin.com/in/...` (including country
+   subdomains like `uk.linkedin.com/in/...`). Discard `/jobs/`, `/posts/`, `/company/`,
+   `/pulse/` and other non-profile results, which search engines often mix in.
 4. For each URL, write a one-line summary based on the snippet (name, current role, company)
 5. Assign a confidence level: **High** (title, company, and location all match the persona),
    **Medium** (title matches but company/location/seniority is unclear from the snippet), or
    **Low** (only a partial or inferred match — flag for manual review)
 6. Repeat with 2–3 search variants to get a diverse set of profiles, then remove duplicate
    profile URLs that appear across multiple variants or strings before presenting the table
+
+**Search-tool caveat:** some web search tools are region-limited (e.g. US-only) and will skew
+results toward the wrong geography for a non-US role, and don't strictly honour the `site:` and
+`OR` operators. If results come back off-location or thin, say so, prefer a search provider
+without a region restriction if one is available, and treat geographic match as a key input to
+the confidence rating rather than assuming the tool filtered by location.
 
 **Output format:**
 

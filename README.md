@@ -36,7 +36,7 @@ LinkedIn monitors for automated or bot-like behavior. To keep your account safe 
 
 **Don't violate LinkedIn's Terms of Service.** The skill operates your browser just like a human would — it clicks, types, and navigates. However, LinkedIn still prohibits automated scraping and mass actions.
 
-**Avoid high-volume actions in bulk.** LinkedIn enforces the following limits (as of 2025):
+**Avoid high-volume actions in bulk.** LinkedIn does not publish exact limits and changes them over time — the figures below are approximate, community-reported ballparks (circa 2025), not official numbers. Treat them as directional and stay well under them:
 
 | Action | Free account | Paid account | Safe daily pace |
 |---|---|---|---|
@@ -55,4 +55,10 @@ The skill itself caps Cowork profile-visit batches at 15–20 per instruction (s
 
 **Respect CAPTCHAs.** If LinkedIn presents a CAPTCHA or verification challenge, the skill will stop and let you handle it yourself — this is by design and protects your account.
 
-As long as you use this skill for reasonable, human-scale tasks (researching a specific candidate, sending a message, reviewing a profile), your account should stay safe.
+Using the skill for reasonable, human-scale tasks (researching a specific candidate, sending a message, reviewing a profile) keeps you within these guidelines, but nothing here is a guarantee — see the disclaimer below.
+
+## Disclaimer and responsible use
+
+- **No warranty or guarantee.** This skill is provided as-is (see [LICENSE](LICENSE)). It cannot guarantee your LinkedIn account won't be restricted — you use it at your own risk.
+- **Terms of Service are your responsibility.** LinkedIn's [User Agreement](https://www.linkedin.com/legal/user-agreement) prohibits automated scraping and bulk actions. Automating profile access (including the Cowork step) may breach it. You are responsible for deciding whether and how to use this skill within LinkedIn's terms and the laws that apply to you.
+- **Candidate data is personal data.** The skill collects and stores individuals' names, roles, and work history. If you retain or process this data, you are the data controller and are responsible for lawful handling — including any consent, notice, and retention obligations under GDPR or other applicable law.
