@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-07-02 — UX review fixes (Phase 13)
+
+Fixes from a UX pass over onboarding, wording, confirmations, formatting, accessibility, dead
+ends, error messages, and consistency:
+
+- **Consistency (spelling):** aligned the README to British spelling to match `SKILL.md`
+  (personalised, synthesises, behaviour) — the README had mixed US/UK forms
+- **Formatting:** added an explicit note that the fenced blocks in each module are format
+  templates to render as Markdown, not to be echoed back as raw ``` code blocks
+- **Wording:** glossed "X-ray search" on first use in Module 2 Part B, and "Cowork" in the
+  user-facing opt-in offer, so neither term assumes prior familiarity
+- **Dead ends:** Module 2 Part B now handles the zero-results case explicitly (say the searches
+  came back empty and offer a concrete next move) instead of only covering "fewer than target"
+
+Structural naming (Module / Part / Stage / Checkpoint / Scenario) was reviewed and left as-is
+by design.
+
 ## 2026-07-02 — repo polish for public sharing
 
 - **README fix:** the connection-requests row of the rate-limit table listed the paid cap

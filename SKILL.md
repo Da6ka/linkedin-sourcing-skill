@@ -116,6 +116,11 @@ Rules:
 
 ## The four modules — run in this order
 
+**Output formatting:** the fenced blocks in each module below are format templates, not literal
+output. Render them as normal Markdown — headings, tables, and bold — filling in the bracketed
+placeholders. Don't wrap the delivered persona, table, scorecard, or messages in a ``` code
+block; the user should see rendered content, not raw Markdown source.
+
 ### Module 1 — Candidate Persona
 
 Synthesise all inputs into a structured ideal candidate profile. This anchors everything that follows.
@@ -181,7 +186,10 @@ Rules for good Boolean strings:
 #### Part B: Live LinkedIn profile search
 
 Use your available web search tool to find real LinkedIn profiles, running one
-`site:linkedin.com/in` Google search per Boolean string. Aim for roughly **15–20 total
+`site:linkedin.com/in` Google search per Boolean string. (This technique — using a search
+engine's `site:` operator to surface profiles instead of searching LinkedIn directly — is
+commonly called an "X-ray search"; it touches no LinkedIn account activity, which is why it's
+the safe default.) Aim for roughly **15–20 total
 profiles across all strings and variants** in the final table — not per string — each with a
 one-line summary and a confidence rating. Prioritise diversity across talent-pool archetypes
 over exhaustive coverage of each one. If the user wants more, they can ask for another round.
@@ -192,7 +200,11 @@ retries. Stop early once you have 15–20 usable profiles.
 **Never invent URLs.** Only include profile URLs literally returned by the search tool —
 never construct, guess, or pattern-complete a `linkedin.com/in/...` URL from a candidate's
 name. If the searches return fewer usable profiles than the target, present fewer rows and
-say so explicitly.
+say so explicitly. If they return **none at all**, don't show an empty table — say the searches
+came back empty, then offer a concrete next move: broaden the strings (fewer keywords, drop the
+location), revise the persona, or — if no web search tool is available — hand over the Boolean
+strings from Part A for the user to run manually. Never leave the user at a blank result with no
+suggested next step.
 
 **If no web search tool is available**, skip Part B: deliver the Boolean strings from Part A,
 tell the user to run them manually in Google or LinkedIn, and offer to continue with
@@ -247,7 +259,8 @@ scraping rules, so do NOT output the Cowork instruction block by default.
 Instead, after the profile table, make a short offer with a plain risk disclaimer:
 
 ```
-**Optional next step — collect full profiles via Cowork.** I can generate a ready-made
+**Optional next step — collect full profiles via Cowork.** (Cowork is Claude's browser
+automation — it drives a real browser on your machine.) I can generate a ready-made
 instruction for Cowork to open each High/Medium-confidence profile in your browser and save
 the full text into one tracker file.
 

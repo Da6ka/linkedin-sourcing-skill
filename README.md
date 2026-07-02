@@ -2,17 +2,17 @@
 
 [![CI](https://github.com/Da6ka/linkedin-sourcing-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/Da6ka/linkedin-sourcing-skill/actions/workflows/ci.yml)
 
-A [Claude Code](https://claude.com/claude-code) skill for LinkedIn candidate sourcing — turns a job description or briefing into a candidate persona, finds matching LinkedIn profiles, scores them, and drafts personalized outreach in one pass.
+A [Claude Code](https://claude.com/claude-code) skill for LinkedIn candidate sourcing — turns a job description or briefing into a candidate persona, finds matching LinkedIn profiles, scores them, and drafts personalised outreach in one pass.
 
 ## What it does
 
 When triggered (e.g. by pasting a JD, asking to "find candidates", "source for this role", or "write outreach"), the skill walks through a full sourcing workflow:
 
-1. Synthesizes the role/briefing into a candidate persona
+1. Synthesises the role/briefing into a candidate persona
 2. Finds real LinkedIn profiles via web search
 3. Offers an optional, opt-in step to collect full profile text into a candidate tracker via the [Cowork](https://claude.com/product/cowork) browser — presented with a risk disclaimer and only generated if you say yes (requires Cowork and a logged-in LinkedIn session; see Part C in `SKILL.md` and "Avoiding LinkedIn account restrictions" below)
 4. Scores candidates against the persona
-5. Drafts personalized outreach messages
+5. Drafts personalised outreach messages
 
 See [SKILL.md](SKILL.md) for the full instructions, and [references/](references/) for the boolean search guide and outreach examples used by the skill.
 
@@ -49,7 +49,7 @@ The skill responds in one pass with a candidate persona, 3–5 Boolean search st
 
 ## Avoiding LinkedIn account restrictions
 
-LinkedIn monitors for automated or bot-like behavior. To keep your account safe while using this skill, follow these precautions:
+LinkedIn monitors for automated or bot-like behaviour. To keep your account safe while using this skill, follow these precautions:
 
 **Use it moderately and naturally.** Avoid running large-scale or repetitive tasks in a short period (e.g., sending hundreds of connection requests or messages in one session).
 
