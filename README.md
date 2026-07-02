@@ -1,5 +1,7 @@
 # linkedin-sourcing-skill
 
+[![CI](https://github.com/Da6ka/linkedin-sourcing-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/Da6ka/linkedin-sourcing-skill/actions/workflows/ci.yml)
+
 A [Claude Code](https://claude.com/claude-code) skill for LinkedIn candidate sourcing — turns a job description or briefing into a candidate persona, finds matching LinkedIn profiles, scores them, and drafts personalized outreach in one pass.
 
 ## What it does
