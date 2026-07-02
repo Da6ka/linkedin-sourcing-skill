@@ -81,6 +81,40 @@ The skill itself caps Cowork profile-visit batches at 15–20 per instruction (s
 
 Using the skill for reasonable, human-scale tasks (researching a specific candidate, sending a message, reviewing a profile) keeps you within these guidelines, but nothing here is a guarantee — see the disclaimer below.
 
+
+## FAQ
+
+### Why did I get only 7 profiles instead of 20?
+
+The skill aims for roughly **15–20 profiles**, but quality comes first. If only a few relevant profiles are found, it returns fewer rather than inventing results.
+
+Try:
+- Broadening the Boolean strings (remove less-important keywords)
+- Removing or relaxing the location requirement
+- Running another round with different search strings
+- Refining the candidate persona
+
+### Why didn't the skill search LinkedIn directly?
+
+By default, the skill uses **X-ray search** (`site:linkedin.com/in`) through a search engine. This avoids unnecessary LinkedIn account activity while still finding public profiles.
+
+### Why are some profile URLs missing?
+
+The skill never invents LinkedIn URLs. It only includes URLs actually returned by the search tool. If no URL is found, none is generated.
+
+### Can the skill send messages or connection requests?
+
+No. The skill is **assistive only**. It drafts outreach messages but never sends messages, connection requests, or performs actions on your behalf.
+
+### Why wasn't the Cowork step offered?
+
+Cowork is optional and only appears when appropriate. If your environment doesn't support it, or if you haven't opted in, the skill skips browser automation and continues with the rest of the workflow.
+
+### Can I ask for another batch of candidates?
+
+Yes. Simply ask for another round. The skill will generate additional search variants and look for more matching profiles instead of repeating the previous results.
+
+
 ## Disclaimer and responsible use
 
 - **No warranty or guarantee.** This skill is provided as-is (see [LICENSE](LICENSE)). It cannot guarantee your LinkedIn account won't be restricted — you use it at your own risk.
