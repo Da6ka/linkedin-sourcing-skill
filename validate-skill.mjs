@@ -6,8 +6,9 @@
 // Run with: node validate-skill.mjs   (exits non-zero on any failure)
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs'
 import { join, dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const root = dirname(new URL(import.meta.url).pathname)
+const root = dirname(fileURLToPath(import.meta.url))
 const errors = []
 
 // 1. SKILL.md frontmatter -----------------------------------------------------
