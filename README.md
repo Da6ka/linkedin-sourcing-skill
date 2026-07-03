@@ -31,7 +31,7 @@ Copy this folder into your Claude Code skills directory:
 git clone https://github.com/Da6ka/linkedin-sourcing-skill.git ~/.claude/skills/linkedin-sourcing
 ```
 
-Restart Claude Code (or start a new session) and the skill will be available automatically — Claude triggers it when you paste a JD or ask to source/outreach on LinkedIn.
+Restart Claude Code (or start a new session) and the skill will be available automatically — Claude triggers it when you paste a JD or ask to source candidates or write outreach, on LinkedIn or any of the other supported platforms.
 
 To confirm it loaded, start a new session and check that `linkedin-sourcing` shows up among your available skills — or just paste a job description and ask "source candidates for this role" — the skill should pick it up on its own.
 
@@ -47,7 +47,7 @@ Paste a job description and ask:
 
 > Source candidates for this role: [JD text]
 
-The skill responds in one pass with a candidate persona, 3–5 Boolean search strings (for LinkedIn, Google, and Sales Navigator), a table of ~15–20 real LinkedIn profiles with confidence ratings, a scorecard tailored to the role's must-haves, and three outreach drafts for the top match.
+The skill responds in one pass with a candidate persona, 3–5 Boolean search strings (for LinkedIn, Google, and Sales Navigator), a table of ~15–20 real LinkedIn profiles with confidence ratings, a scorecard tailored to the role's must-haves, and three outreach drafts for the top match. For a tech/design/data role, it first asks which candidate pool you need and — once you answer — adds a second table of profiles from the matching platform (e.g. GitHub for an engineering search, Dribbble for a design one).
 
 
 ## Avoiding LinkedIn account restrictions
@@ -120,8 +120,33 @@ Cowork is optional and only appears when appropriate. If your environment doesn'
 
 Yes. Simply ask for another round. The skill will generate additional search variants and look for more matching profiles instead of repeating the previous results.
 
+### How does the skill decide which platforms to search besides LinkedIn?
+
+It asks upfront what type of candidates you're sourcing (tech, design, data/ML, algorithm-heavy,
+commercial/general, or RU/CIS market) and maps that to a source set — see
+`references/other-platforms.md` for the full decision table and per-platform search recipes
+(GitHub, Stack Overflow, Kaggle, Codeforces, Dribbble, Behance, hh.ru, geekjob.ru, Reddit,
+Twitter/X, Telegram, Threads). LinkedIn always runs regardless of the answer; if the JD already
+makes the candidate type obvious, the skill states its inference instead of asking. You can also
+name a platform directly ("also check Reddit") to override the automatic pick.
+
+### Is it safe to search hh.ru the way this skill does?
+
+Only via the X-ray method the skill uses (a Google `site:hh.ru/resume` search) — never a direct
+scraper. hh.ru's User Agreement explicitly bans automated parsing, and unauthorized data
+collection carries criminal exposure under Russian law (ст. 272.1 УК РФ, in force since
+11.12.2024) on top of 152-ФЗ fines — materially higher risk than LinkedIn's civil-ToS-only
+exposure. See the hh.ru section of `references/other-platforms.md` for the full note.
+
 
 ## Disclaimer and responsible use
+
+The points below focus on LinkedIn since it's the platform every run touches. When a run also
+searches GitHub, Stack Overflow, Kaggle, Codeforces, Dribbble, Behance, hh.ru, geekjob.ru,
+Reddit, Twitter/X, or Telegram, the same principles apply — the skill uses public search
+(X-ray or each platform's native search) rather than scraping, but each platform has its own
+terms of service, and hh.ru's carries a materially stronger legal risk (see the FAQ above and
+`references/other-platforms.md`). You are responsible for complying with each platform's terms.
 
 - **No warranty or guarantee.** This skill is provided as-is (see [LICENSE](LICENSE)). It cannot guarantee your LinkedIn account won't be restricted — you use it at your own risk.
 - **Terms of Service are your responsibility.** LinkedIn's [User Agreement](https://www.linkedin.com/legal/user-agreement) prohibits automated scraping and bulk actions. Automating profile access (including the Cowork step) may breach it. You are responsible for deciding whether and how to use this skill within LinkedIn's terms and the laws that apply to you.
