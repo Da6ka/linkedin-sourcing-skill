@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-07-04 — Cowork pause + rate-limit footnote
+
+Fixes from a cross-check against a third-party LinkedIn rate-limit breakdown ([PR #19](https://github.com/Da6ka/linkedin-sourcing-skill/pull/19)):
+
+- **README:** added a footnote to the connection-requests row noting the free-tier (~80/week) vs
+  paid-tier (~100/week) advisory split some community writeups report, and clarifying the skill's
+  own safe-pace figure (50–75/week) already sits below both.
+- **SKILL.md:** added an explicit pause before offering the Cowork profile-collection step — the
+  profile table is now delivered as a standalone answer first, with the Cowork offer following as
+  a separate, deliberate decision point rather than bundled into the same response.
+- **SKILL.md:** strengthened the Cowork risk disclaimer so the user is asked to consciously confirm
+  they're ready to accept the account risk, rather than treating a quick "ok" as informed consent.
+
 ## 2026-07-03 — release-audit fixes
 
 Fixes from a pre-release audit; no workflow changes:
