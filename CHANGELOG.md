@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-07-04 — General candidate-sourcing bot, beyond LinkedIn
+
+Expands the skill from LinkedIn-only to a general candidate-sourcing bot ([PR #23](https://github.com/Da6ka/linkedin-sourcing-skill/pull/23)):
+
+- **SKILL.md:** added Checkpoint 0, asked before Module 1, which finds out what type of
+  candidates the user is sourcing (tech, design, data/ML, algorithm-heavy, commercial/general,
+  RU/CIS) and maps that to a source set. LinkedIn always runs as the baseline; the answer only
+  adds platform(s) on top via the new Module 2 Part D.
+- **references/other-platforms.md (new):** decision table and search recipes for GitHub, Stack
+  Overflow, Kaggle, Codeforces, Dribbble, Behance, hh.ru, geekjob.ru, Reddit, Twitter/X,
+  Telegram, and Threads. hh.ru carries a stronger safety note than the rest — its User
+  Agreement explicitly bans parsing (item 12), and unauthorized data collection is now criminal
+  under RU law (ст. 272.1 УК РФ since 11.12.2024) with 152-ФЗ fines on top — so the recipe is
+  X-ray-search-only, never a scraper or unofficial API wrapper.
+- **SKILL.md / README:** run footer now lists sources that weren't used, so a follow-up round
+  on a different platform doesn't require re-answering Checkpoint 0.
+- **Frontmatter / title:** repositioned from "LinkedIn Sourcing Skill" to "Candidate Sourcing
+  Skill" to reflect the broader scope.
+
 ## 2026-07-04 — Cowork pause + rate-limit footnote
 
 Fixes from a cross-check against a third-party LinkedIn rate-limit breakdown ([PR #19](https://github.com/Da6ka/linkedin-sourcing-skill/pull/19)):
