@@ -31,6 +31,11 @@ Fixes from a pre-release audit; no workflow changes:
 - **Length guidance:** reconciled `outreach-examples.md` with SKILL.md so both frame 80–120 words the
   same way, and noted that the examples are skeletons a finished message expands to fill.
 
+## [v1.0.0](https://github.com/Da6ka/linkedin-sourcing-skill/releases/tag/v1.0.0) — 2026-07-02
+
+Everything from this line down shipped in the initial public release. Entries above are
+post-release, unreleased changes.
+
 ## 2026-07-02 — UX review fixes
 
 Fixes from a UX pass over onboarding, wording, confirmations, formatting, accessibility, dead
