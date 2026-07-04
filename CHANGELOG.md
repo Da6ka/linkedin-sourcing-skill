@@ -1,12 +1,24 @@
 # Changelog
 
+## 2026-07-04 — Clarify region-trigger ambiguity and Telegram consent gap ([PR #34](https://github.com/Da6ka/tech-sourcing-skill/pull/34))
+
+Found via a follow-up subagent edge-case review of `references/other-platforms.md`, after the
+geekjob.ru/Twitter-X fixes in #32. The region caveat for the hh.ru/geekjob/Telegram branch now
+defines what counts as an "explicit" Russia/CIS signal — Cyrillic language alone isn't
+sufficient, and the agent should ask the user rather than guess, since hh.ru/geekjob now carry
+criminal-liability framing. The Telegram section now flags that manually copying names/handles
+out of a private chat is GDPR-relevant personal-data processing even without scraping, and
+shouldn't be treated as pre-cleared just because it's manual.
+
+No functional changes — documentation only.
+
 ## 2026-07-04 — Strengthen geekjob.ru and Twitter/X legal/safety notes ([PR #32](https://github.com/Da6ka/tech-sourcing-skill/pull/32))
 
 Found via a subagent edge-case review of the skill. `references/other-platforms.md`'s
 geekjob.ru note previously read as lower-risk than hh.ru ("terms haven't been reviewed as
 closely") despite being the same RU jurisdiction and data type — it now explicitly inherits
 hh.ru's ст. 272.1 УК РФ / 152-ФЗ exposure. Twitter/X's note only referenced generic ToS
-territory — now cites the *X Corp. v. Bright Data* CFAA enforcement precedent and states
+territory — now cites the _X Corp. v. Bright Data_ CFAA enforcement precedent and states
 hard no-login/no-automation rules, matching hh.ru's level of rigor.
 
 No functional changes — documentation only.
@@ -228,8 +240,8 @@ injection was flagged and ignored. One fix from the round:
 
 Fixes from a team-lead-style review of the published repo:
 
-- **Consistency:** resolved the Module 2 Part B contradiction (8–12 URLs *per string* vs
-  15–20 *total*) — the target is now stated once: 15–20 profiles total across all strings
+- **Consistency:** resolved the Module 2 Part B contradiction (8–12 URLs _per string_ vs
+  15–20 _total_) — the target is now stated once: 15–20 profiles total across all strings
 - **Reliability:** added a hard "never invent URLs" rule — only profile URLs literally
   returned by the search tool may appear in the table; fewer results are presented honestly
 - **Cost/latency:** capped the web-search budget at 4–6 searches per sourcing run
