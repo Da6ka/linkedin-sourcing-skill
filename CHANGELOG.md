@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-07-04 — Add malformed-JD guardrails and fix two validator false-fail bugs ([PR #36](https://github.com/Da6ka/tech-sourcing-skill/pull/36))
+
+Found via a follow-up subagent edge-case review of the remaining skill files (SKILL.md,
+`references/boolean-search-guide.md`, `references/outreach-examples.md`,
+`references/example-walkthrough.md`, `validate-skill.mjs`), after `references/other-platforms.md`
+was already covered in #32/#34. SKILL.md now tells the agent to ask rather than silently pick a
+role or blend requirements when the input describes multiple roles or is internally
+contradictory, and to ask one clarifying question when both seniority and location are absent
+rather than guess and cascade the error into every later module. `validate-skill.mjs` no longer
+false-fails "no frontmatter" on a BOM/leading-blank-line file, and no longer false-fails a
+"broken link" on literal `[link]` placeholder text inside fenced code blocks.
+
+No functional changes to the CI gate's actual failure modes — both validator fixes only remove
+false positives.
+
 ## 2026-07-04 — Clarify region-trigger ambiguity and Telegram consent gap ([PR #34](https://github.com/Da6ka/tech-sourcing-skill/pull/34))
 
 Found via a follow-up subagent edge-case review of `references/other-platforms.md`, after the
