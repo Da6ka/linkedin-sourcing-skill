@@ -8,6 +8,7 @@ The best messages are specific to the individual person.
 ## Commercial / Sales
 
 ### Variant 1 — Career growth (cold InMail)
+
 **Hook:** Candidate scaled enterprise sales but is capped within a single region.
 
 You built [Company]'s enterprise pipeline from scratch — that's exactly the experience [Client]
@@ -22,6 +23,7 @@ Are you open to a 30-minute call next week?
 ---
 
 ### Variant 2 — Recognition
+
 **Hook:** Candidate grew a team from 3 to 18 people — a concrete fact from their profile.
 
 Growing a team from 3 to 18 people in two years at [Company] isn't luck, it's a system. That's
@@ -38,6 +40,7 @@ Open to a short conversation next week?
 ## Marketing
 
 ### Variant 3 — Curiosity / low-pressure
+
 **Hook:** Candidate is senior and gets a lot of inbound — needs a non-standard opener.
 
 [Name], I have a role I'd hesitate to say is definitely a fit for you — but my instinct says
@@ -51,6 +54,7 @@ If you're open to a 30-minute conversation, let me know and I'll share more.
 ---
 
 ### Variant 1 — Career growth (international marketing)
+
 **Hook:** Candidate worked in a local market, but their profile shows interest in international projects.
 
 You built marketing for [market] — that's a strong foundation. [Client] is expanding into
@@ -66,6 +70,7 @@ Open to a conversation next week?
 ## Technology / Product
 
 ### Variant 2 — Recognition
+
 **Hook:** A public product launch or metric findable in the candidate's profile/publications.
 
 Launching [product/feature] at [Company] isn't just a résumé line — it's a hard problem most
@@ -82,6 +87,7 @@ Are you open to a 30-minute call?
 ## Finance / Operations
 
 ### Variant 1 — Career growth
+
 **Hook:** Candidate worked within a mature structure, but their profile shows readiness for a more entrepreneurial role.
 
 At [Company] you operated within a mature structure. [Client] is a different story:
@@ -93,6 +99,33 @@ Direct access to the CEO, strategic influence from day one.
 Open to a short conversation next week?
 
 ---
+
+## Edge cases
+
+**No visible way to contact the candidate.** A candidate found via X-ray search may have a
+locked/private profile, or the user may have no InMail credits left — the candidate isn't
+reachable through LinkedIn's own send flow. Don't draft a message with nowhere to send it as
+if that's normal. Write the message anyway (it's still useful for Cowork-assisted manual
+outreach or a mutual-connection introduction), but add a one-line note flagging that direct
+LinkedIn send isn't available for this profile and pointing back to SKILL.md's manual/Cowork
+fallback rather than silently assuming InMail will work.
+
+**Candidate already contacted in a previous round.** If this is scenario 5 ("another round")
+or the user is revisiting a role worked on earlier, ask whether this specific candidate has
+already been messaged before drafting fresh outreach — don't silently generate a second cold
+open. If they have, either skip drafting new outreach for them or, if the user wants a
+follow-up, write it as an explicit follow-up ("following up on my note from [date]") rather
+than a first-contact message reusing the same angle.
+
+**Non-English candidate — register, not just translation.** All the templates above are
+English and written in a casual-but-professional Western register. Translating the words isn't
+enough — formality expectations differ by language and market. A Russian-language message to a
+candidate expects the formal «Вы» register by default (not the informal «ты»), and German
+similarly defaults to «Sie» over «du» unless the candidate's own profile signals an informal
+tone first (e.g. they write to their own network informally). When Module 4's language-matching
+rule (see SKILL.md, "Output language") produces a non-English message, adjust register to match
+local professional norms, not just vocabulary — don't assume the casual tone of the English
+examples above translates directly.
 
 ## General principles for all roles
 

@@ -4,7 +4,13 @@
 //   1. SKILL.md missing its `name` / `description` frontmatter.
 //   2. A relative Markdown link pointing at a file that doesn't exist.
 // Run with: node validate-skill.mjs   (exits non-zero on any failure)
-import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
+import {
+  readFileSync,
+  existsSync,
+  readdirSync,
+  statSync,
+  lstatSync,
+} from "node:fs";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -40,10 +46,33 @@ function mdFiles(dir) {
   for (const entry of readdirSync(dir)) {
     if (entry === ".git" || entry === "node_modules") continue;
     const full = join(dir, entry);
+    // Use lstat (doesn't follow symlinks) so a symlinked directory is treated
+    // as a leaf, not traversed — a symlink loop would otherwise recurse
+    // forever instead of failing cleanly.
+    if (lstatSync(full).isSymbolicLink()) continue;
     if (statSync(full).isDirectory()) out.push(...mdFiles(full));
     else if (entry.endsWith(".md")) out.push(full);
   }
   return out;
+}
+
+// GitHub's heading-to-anchor slug algorithm, best-effort: lowercase, strip
+// anything that isn't a letter/number/space/hyphen, spaces become hyphens.
+// Doesn't handle GitHub's duplicate-heading "-1"/"-2" suffixing.
+function slugify(heading) {
+  return heading
+    .trim()
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s-]/gu, "")
+    .replace(/\s+/g, "-");
+}
+
+function headingSlugs(text) {
+  const slugs = new Set();
+  const headingRe = /^#{1,6}\s+(.+)$/gm;
+  let h;
+  while ((h = headingRe.exec(text))) slugs.add(slugify(h[1]));
+  return slugs;
 }
 
 const linkRe = /\[[^\]]*\]\(([^)]+)\)/g;
@@ -58,10 +87,24 @@ for (const file of mdFiles(root)) {
     let target = m[1].trim();
     // Skip external links, anchors, and mailto.
     if (/^(https?:|mailto:|#)/.test(target)) continue;
-    target = target.split("#")[0]; // drop any anchor fragment
+    const [pathPart, fragment] = target.split("#");
+    target = pathPart;
     if (!target) continue;
-    if (!existsSync(resolve(dirname(file), target))) {
+    const resolvedPath = resolve(dirname(file), target);
+    if (!existsSync(resolvedPath)) {
       errors.push(`${file.replace(root + "/", "")}: broken link -> ${m[1]}`);
+      continue;
+    }
+    // Best-effort anchor check: only for links pointing at another .md file
+    // with a #fragment, since that's the case a broken link actually breaks
+    // navigation (external/HTML anchors aren't covered here).
+    if (fragment && target.endsWith(".md")) {
+      const targetText = readFileSync(resolvedPath, "utf8");
+      if (!headingSlugs(targetText).has(fragment.toLowerCase())) {
+        errors.push(
+          `${file.replace(root + "/", "")}: broken anchor -> ${m[1]} (no heading slug "${fragment}" in ${target})`,
+        );
+      }
     }
   }
 }

@@ -76,7 +76,11 @@ Route the chosen scenario to the matching modules:
 - Scenario 2 → a condensed Module 1 persona (a few bullets, not the full template) + Module 2 Part A only
 - Scenario 3 → Module 4 (ask for the role context if missing)
 - Scenario 4 → a condensed Module 1 persona + Module 3, then apply the scorecard to each pasted profile
-- Scenario 5 → Module 2 with fresh variants, reusing the existing persona; ends at checkpoint 2
+- Scenario 5 → Module 2 with fresh variants, reusing the existing persona; ends at checkpoint 2.
+  **If no persona is actually present in this conversation** (e.g. a new session, or context
+  was cleared), don't fabricate one from the scenario name alone — say you don't have the
+  earlier persona and ask the user to paste it, a summary of it, or the original JD so you can
+  rebuild it before running fresh search variants
 
 ---
 
@@ -153,8 +157,11 @@ Rules:
 - If the user answers with corrections, apply them and re-deliver only the affected module
   before moving on
 - **Escape hatch:** if the user explicitly asks for everything in one go ("run it all, no
-  questions", "сделай всё сразу"), skip both checkpoints and deliver the full run in a
-  single response
+  questions", "сделай всё сразу"), skip all three checkpoints — including Checkpoint 0 — and
+  deliver the full run in a single response. For Checkpoint 0 specifically, don't leave the
+  candidate-pool question unanswered: apply the same inference used in "Skip the question"
+  above if the JD makes the type unambiguous, otherwise default to LinkedIn only (as option 7
+  would) and name that choice in one line so the user can course-correct afterward.
 
 ---
 
@@ -400,6 +407,14 @@ additive, never a replacement. If Checkpoint 0 was skipped because the JD made t
 obvious, use that inferred type here. Don't add platforms beyond what was selected "just in
 case" — if the persona turns out to suggest a better-fitting platform than what was picked at
 Checkpoint 0, say so and offer it as a choice rather than silently running it.
+
+**If Checkpoint 0's answer was option 7 ("not sure / mixed"):** that option's own text promises
+"I'll suggest more once I see the persona" — treat this as a commitment, not an optional aside.
+By the time Part D is reached the persona is confirmed, so always check it against the decision
+table in `references/other-platforms.md` here and surface any platform suggestion explicitly,
+even if nothing about the persona jumps out as an obvious fit — say briefly that you checked and
+found no strong match, rather than silently running LinkedIn-only with no acknowledgment of the
+earlier promise.
 
 **How to run it:** read `references/other-platforms.md`, find the recipe for each selected
 platform (search approach, confidence heuristics, safety notes), and follow it. Output each
