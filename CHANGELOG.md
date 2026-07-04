@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-07-04 — Add full worked example ([PR #30](https://github.com/Da6ka/tech-sourcing-skill/pull/30))
+
+Added `references/example-walkthrough.md`, an anonymised end-to-end sourcing run kept in full
+because the interesting part isn't the initial candidate list — it's what happens after:
+verification catching aspirational LinkedIn branding and stale search snippets, and how the
+skill surfaces judgment calls (geography exceptions, overqualification reconsiderations) instead
+of deciding them silently.
+
+Replaced the README's `## Example` section with a one-prompt-to-full-output showcase: an
+effort-comparison hook, followed by the actual shape of a one-shot run (persona, search strings,
+candidate table, scorecard, one outreach variant) shown directly in the README instead of only
+linking out — so "what do I get for one prompt" is answered where a recruiter is already
+looking. Still links to the full walkthrough for the deeper verification story.
+
+Also changed the outreach call-to-action in `references/outreach-examples.md` from a 15-minute
+to a 30-minute call, across all four occurrences.
+
+No functional changes — documentation only.
+
 ## 2026-07-04 — Document bare-word exclusion caveat
 
 Added a tip to the Google `site:linkedin.com` section of `references/boolean-search-guide.md`:
