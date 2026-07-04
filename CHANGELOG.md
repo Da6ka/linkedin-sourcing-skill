@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-07-04 — Strengthen geekjob.ru and Twitter/X legal/safety notes ([PR #32](https://github.com/Da6ka/tech-sourcing-skill/pull/32))
+
+Found via a subagent edge-case review of the skill. `references/other-platforms.md`'s
+geekjob.ru note previously read as lower-risk than hh.ru ("terms haven't been reviewed as
+closely") despite being the same RU jurisdiction and data type — it now explicitly inherits
+hh.ru's ст. 272.1 УК РФ / 152-ФЗ exposure. Twitter/X's note only referenced generic ToS
+territory — now cites the *X Corp. v. Bright Data* CFAA enforcement precedent and states
+hard no-login/no-automation rules, matching hh.ru's level of rigor.
+
+No functional changes — documentation only.
+
 ## 2026-07-04 — Add full worked example ([PR #30](https://github.com/Da6ka/tech-sourcing-skill/pull/30))
 
 Added `references/example-walkthrough.md`, an anonymised end-to-end sourcing run kept in full
