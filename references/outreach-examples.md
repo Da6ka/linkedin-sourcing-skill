@@ -17,7 +17,7 @@ They're expanding into [region/segment] and looking for a [Title] who's done thi
 your LinkedIn profile is exactly why I reached out. The scale is different: full strategic
 autonomy, direct access to the C-suite, equity from day one.
 
-Are you open to a 15-minute call next week?
+Are you open to a 30-minute call next week?
 
 ---
 
@@ -46,7 +46,7 @@ it's worth asking.
 [Client], [brief context]. Your LinkedIn profile is what prompted me — they're looking for a
 [Title] with real influence over product and audience.
 
-If you're open to a 15-minute conversation, let me know and I'll share more.
+If you're open to a 30-minute conversation, let me know and I'll share more.
 
 ---
 
@@ -75,7 +75,7 @@ people avoid. That's why I'm reaching out.
 [Title] — someone who can not only conceive but also ship, which is what your LinkedIn profile
 shows you've done.
 
-Are you open to a 15-minute call?
+Are you open to a 30-minute call?
 
 ---
 
@@ -104,7 +104,7 @@ Open to a short conversation next week?
 2. **Second paragraph — the opportunity in one sentence.** Company stage + the key challenge.
    Not a list of JD requirements.
 
-3. **Call to action — simple and concrete.** "Are you open to a 15-minute call next week?"
+3. **Call to action — simple and concrete.** "Are you open to a 30-minute call next week?"
    works better than "Let me know if you'd like to learn more."
 
 4. **Length.** 80–120 words, and no more — long enough to be specific, short enough to respect
