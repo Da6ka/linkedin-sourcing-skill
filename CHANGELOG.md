@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-07-04 — Fix remaining edge cases across SKILL.md, references, and the validator ([PR #38](https://github.com/Da6ka/tech-sourcing-skill/pull/38))
+
+Found via a follow-up subagent edge-case review of the same five files covered in #36, closing
+out every item left open from both review passes. SKILL.md: the escape hatch now explicitly
+covers Checkpoint 0 (with a stated default when it fires), Checkpoint 0 option 7's promise to
+suggest a platform once the persona is seen is now always checked rather than incidentally, and
+Scenario 5 ("another round") asks for the persona/JD instead of fabricating one when none exists
+in context. `references/boolean-search-guide.md` gains non-Latin transliteration guidance, a
+query-length ceiling, and special-character (`&`, `/`, `+`) handling.
+`references/outreach-examples.md` gains edge cases for no-contact-path candidates,
+already-contacted candidates, and non-English formality register.
+`references/example-walkthrough.md` now illustrates a persona-correction-and-re-delivery cycle
+and clarifies that its 72-candidate/dozen-round total is cumulative across multiple runs, not a
+single-run budget violation. `validate-skill.mjs` guards against symlink-cycle infinite
+recursion and adds best-effort `#anchor` validation for internal `.md` links.
+
+No functional changes to the skill's happy path — these are guardrails, guidance, and validator
+robustness fixes for edge cases, not changes to default behavior.
+
 ## 2026-07-04 — Add malformed-JD guardrails and fix two validator false-fail bugs ([PR #36](https://github.com/Da6ka/tech-sourcing-skill/pull/36))
 
 Found via a follow-up subagent edge-case review of the remaining skill files (SKILL.md,
