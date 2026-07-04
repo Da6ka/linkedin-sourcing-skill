@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-07-04 — Document bare-word exclusion caveat
+
+Added a tip to the Google `site:linkedin.com` section of `references/boolean-search-guide.md`:
+a bare `-word` exclusion (e.g. `-recruiter`) matches anywhere on the indexed page, not just the
+title, so it can suppress legitimate candidate profiles alongside the intended exclusions.
+Recommends a more specific phrase exclusion instead.
+
 ## 2026-07-04 — Document Boolean operator precedence bug
 
 Added a 5th entry to "Common mistakes to avoid" in `references/boolean-search-guide.md`: an
