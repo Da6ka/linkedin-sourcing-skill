@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-07-04 — Document Boolean operator precedence bug
+
+Added a 5th entry to "Common mistakes to avoid" in `references/boolean-search-guide.md`: an
+unparenthesized `OR` group combined with `AND` parses incorrectly (`AND` binds tighter than
+`OR`), silently widening results to match the first `OR` term alone. Always wrap `OR` groups
+in their own parentheses when combined with `AND`.
+
 ## 2026-07-04 — v2.0.0: renamed to tech-sourcing-skill (BREAKING)
 
 Renamed the repo, local install folder, and skill frontmatter `name` from
