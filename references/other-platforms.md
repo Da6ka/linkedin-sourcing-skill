@@ -113,8 +113,18 @@ Bio search is more reliable than tweet-content search for identifying current ro
 (shipped features, technical opinions, conference talks).
 **Red flag:** inactive >12 months, or persona-matching bio with zero substantive posts
 (likely a lead-gen or aggregator account, not the person).
-**Safety:** X-ray only. Do not log in and scrape follower/following graphs — that crosses
-into platform ToS territory the same way LinkedIn Recruiter automation does.
+
+**Safety — public X-ray search only, never log in or automate.** X has pursued CFAA-based
+litigation against scrapers (e.g. *X Corp. v. Bright Data*, 2023) and aggressively rate-limits
+or blocks logged-out access with bot-walls, so treat the ToS boundary as actively enforced,
+not theoretical:
+- Never log in to browse — an authenticated session is what triggers ToS/CFAA exposure and
+  the follower/following graph in particular is a common target of past enforcement actions.
+- Never automate requests (headless browser, scraper, unofficial API) against x.com/twitter.com
+  itself — only the `site:x.com` Google X-ray pattern above is safe, since it never touches
+  X's servers.
+- If X-ray results are sparse due to bot-wall-limited indexing, say so and fall back to a
+  lower-confidence pass rather than suggesting a logged-in workaround.
 
 ### Reddit
 
@@ -190,11 +200,18 @@ reliable Google X-ray equivalent (resumes aren't consistently indexed). Use this
 secondary pass alongside hh.ru above, mainly for its tech-specific filtering.
 
 **Good signal:** recently updated resume (geekjob shows last-active date), stack match.
-**Safety:** this is a resume database of people actively job-seeking — softer opener than a
-cold LinkedIn message is appropriate; they've already signaled openness. Unlike hh.ru, geekjob
-has no indexed X-ray path, so any search here happens on-platform — stay within normal manual
-browsing behavior (no automation) since its own terms haven't been reviewed here as closely as
-hh.ru's.
+
+**Safety — treat with the same caution as hh.ru until its terms are separately confirmed.**
+geekjob.ru is a resume database in the same RU jurisdiction as hh.ru, collecting the same kind
+of personal data (name, contact intent, work history). The criminal and administrative exposure
+described above for hh.ru — ст. 272.1 УК РФ (unauthorized personal-data collection, up to 5
+years) and 152-ФЗ turnover-based fines — turns on Russian law and the nature of the data, not
+on hh.ru's specific User Agreement wording, so there is no reason to assume geekjob.ru carries
+materially lower risk. This is a resume database of people actively job-seeking — softer opener
+than a cold LinkedIn message is appropriate; they've already signaled openness. But since
+geekjob has no indexed X-ray path, any search here happens on-platform — stay within normal
+manual browsing behavior only (no automation, no scraper, no headless browser) exactly as with
+hh.ru, not because geekjob's own terms have been reviewed and found more permissive.
 
 ### Telegram chats/channels
 
