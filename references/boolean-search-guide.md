@@ -57,3 +57,4 @@ Sales Navigator has the most powerful search. Key filters to use:
 2. **Title inflation** — a "Manager" at a startup may be equivalent to a "Director" at a corporate. Use OR to capture variants.
 3. **Missing title variants** — "Head of" vs "VP" vs "Director" vs "Lead" all mean similar seniority at different companies. Always include 3+ title variants.
 4. **Ignoring adjacent roles** — the best candidate may have a non-obvious title. A "Country Manager" may be perfect for a "GM EMEA" role.
+5. **Unparenthesized OR groups** — `AND` binds tighter than `OR`, so `"Title A" OR "Title B" AND "Skill"` actually parses as `"Title A" OR ("Title B" AND "Skill")` — anyone matching "Title A" alone passes, regardless of the skill clause. Always wrap every `OR` group in its own parentheses when it's combined with an `AND`: `("Title A" OR "Title B") AND "Skill"`.
