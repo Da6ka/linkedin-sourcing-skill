@@ -1,5 +1,7 @@
 # Changelog
 
+## v2.0.1 — Edge-case hardening
+
 ## 2026-07-04 — Fix remaining edge cases across SKILL.md, references, and the validator ([PR #38](https://github.com/Da6ka/tech-sourcing-skill/pull/38))
 
 Found via a follow-up subagent edge-case review of the same five files covered in #36, closing
@@ -110,6 +112,8 @@ geekjob.ru, alongside LinkedIn).
 
 **Breaking** because the folder path and skill name existing users reference change — hence the
 major version bump rather than a minor one.
+
+## v1.1.0 — General candidate sourcing, beyond LinkedIn
 
 ## 2026-07-04 — General candidate-sourcing bot, beyond LinkedIn
 
