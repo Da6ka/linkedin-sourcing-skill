@@ -1,6 +1,58 @@
 # Changelog
 
-## v2.0.1 — Edge-case hardening
+## v2.1.0 — Worked-example wiring and consistency fixes
+
+Note: the entries for PR #40 and PRs #42/#44 below were previously filed under v2.0.1, but
+they merged after the v2.0.1 tag was cut — they ship in v2.1.0.
+
+## 2026-07-13 — Match Variant 2's heading name to SKILL.md exactly ([PR #53](https://github.com/Da6ka/tech-sourcing-skill/pull/53))
+
+`references/outreach-examples.md`'s Variant 2 heading now uses the exact name SKILL.md refers
+to, so the cross-reference resolves unambiguously. No content changes to the variant itself.
+
+## 2026-07-13 — Add tech-role examples to the Boolean search guide ([PR #52](https://github.com/Da6ka/tech-sourcing-skill/pull/52))
+
+`references/boolean-search-guide.md` gains worked Boolean examples for common tech roles, so
+the guide demonstrates the syntax on the searches this skill actually generates rather than
+only abstract patterns.
+
+## 2026-07-13 — Tooling: bump CI actions to latest majors ([PR #51](https://github.com/Da6ka/tech-sourcing-skill/pull/51))
+
+`actions/checkout` and `actions/setup-node` bumped to their latest major versions in
+`.github/workflows/ci.yml`. No content or behavior changes.
+
+## 2026-07-13 — Add missing reference files to CONTRIBUTING.md and the PR template ([PR #50](https://github.com/Da6ka/tech-sourcing-skill/pull/50))
+
+CONTRIBUTING.md's file map and the PR template described `references/` as only the Boolean
+search guide and outreach examples; both now also mention the other-platforms decision
+table/recipes and the worked walkthrough. Documentation only.
+
+## 2026-07-13 — Fix DESIGN.md's false claim that Checkpoint 1 has no escape hatch ([PR #49](https://github.com/Da6ka/tech-sourcing-skill/pull/49))
+
+DESIGN.md claimed Checkpoint 1 had no escape hatch; SKILL.md's escape hatch covers it.
+Documentation only.
+
+## 2026-07-13 — Make example-walkthrough.md's scoring tiers match SKILL.md's 3-tier scorecard ([PR #48](https://github.com/Da6ka/tech-sourcing-skill/pull/48))
+
+The worked example's scoring language now uses the same 3-tier scorecard SKILL.md defines,
+so the walkthrough no longer models a scoring scheme the skill doesn't use. Matters at runtime
+since SKILL.md points to the walkthrough for ambiguous scoring judgment calls.
+
+## 2026-07-13 — Add missing Threads mention to two README platform lists ([PR #47](https://github.com/Da6ka/tech-sourcing-skill/pull/47))
+
+Two README platform lists omitted Threads even though `references/other-platforms.md` covers
+it. Documentation only.
+
+## 2026-07-13 — Backfill missing CHANGELOG entries ([PR #45](https://github.com/Da6ka/tech-sourcing-skill/pull/45), [PR #46](https://github.com/Da6ka/tech-sourcing-skill/pull/46))
+
+Backfilled changelog entries for previously undocumented PRs (#9, #10, #16, #18, #21, #25, and
+others) and softened DESIGN.md's claim that the changelog was complete. Documentation only.
+
+## 2026-07-13 — Add as-built design doc ([PR #43](https://github.com/Da6ka/tech-sourcing-skill/pull/43))
+
+New DESIGN.md documents the skill's architecture as built: context and motivation, high-level
+behavior, the multi-platform architecture, the optional Cowork step, error handling and UX,
+and the file/reference structure. Documentation only.
 
 ## 2026-07-04 — Fix stale 15-minute CTA and missing walkthrough reference ([PR #40](https://github.com/Da6ka/tech-sourcing-skill/pull/40))
 
@@ -19,6 +71,8 @@ validator hardening fix.
 Prettier was rewriting emphasis style (`_x_` ↔ `*x*`) in shipped Markdown on every format run;
 `.prettierignore` now excludes `*.md`, then `*.js`/`*.mjs` for consistency with the other repos.
 No content or behavior changes.
+
+## v2.0.1 — Edge-case hardening
 
 ## 2026-07-04 — Fix remaining edge cases across SKILL.md, references, and the validator ([PR #38](https://github.com/Da6ka/tech-sourcing-skill/pull/38))
 
