@@ -30,6 +30,10 @@ site:linkedin.com/in "[Title]" OR "[Title variant]" "[Keyword]" "[Location]"
 **Examples:**
 
 ```
+site:linkedin.com/in "Backend Engineer" OR "Software Engineer" "Go" "Postgres" "Series A"
+
+site:linkedin.com/in "Staff Engineer" OR "Senior Software Engineer" "Kubernetes" "remote"
+
 site:linkedin.com/in "Head of International Marketing" OR "International Marketing Director" "FMCG" "London"
 
 site:linkedin.com/in "VP Marketing" "B2B SaaS" "Series B" OR "Series C"
@@ -41,8 +45,11 @@ site:linkedin.com/in "Marketing Manager" "Unilever" OR "P&G" OR "Nestlé"
 
 - Drop location to get a wider result set
 - Use company names as keywords to find people who worked at specific firms
-- Combine title with a skill or tool: `"Demand Generation" "HubSpot" "SaaS"`
-- Use past-tense company names for career-changers: `"ex-McKinsey" OR "formerly McKinsey"`
+- Combine title with a skill or tool: `"Backend Engineer" "Go" "Kubernetes"` for a tech search,
+  or `"Demand Generation" "HubSpot" "SaaS"` for a marketing one — the Boolean structure is the
+  same regardless of domain
+- Use past-tense company names for career-changers: `"ex-Google" OR "formerly Google"` (or
+  `"ex-McKinsey" OR "formerly McKinsey"` outside tech)
 - **`-exclusion` is a blunt instrument** — a bare `-recruiter` drops any indexed page containing
   that word _anywhere_, including sidebar "People also viewed" text or unrelated boilerplate, so
   it can suppress good candidate profiles along with the ones you meant to exclude. Prefer a more
