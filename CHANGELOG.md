@@ -133,6 +133,15 @@ major version bump rather than a minor one.
 
 ## v1.1.0 — General candidate sourcing, beyond LinkedIn
 
+## 2026-07-03 — Document multi-platform sourcing throughout README ([PR #25](https://github.com/Da6ka/linkedin-sourcing-skill/pull/25))
+
+Trigger phrasing, the example output, the FAQ, and the disclaimer intro still read LinkedIn-only
+after the general candidate-sourcing expansion below — brought the rest of README in line. New
+FAQ entries cover how the skill picks additional platforms (Checkpoint 0 /
+`references/other-platforms.md`) and hh.ru's stronger safety note; the disclaimer intro now
+flags that each additional platform carries its own ToS, with hh.ru called out as materially
+higher legal risk.
+
 ## 2026-07-04 — General candidate-sourcing bot, beyond LinkedIn
 
 Expands the skill from LinkedIn-only to a general candidate-sourcing bot ([PR #23](https://github.com/Da6ka/linkedin-sourcing-skill/pull/23)):
@@ -152,6 +161,10 @@ Expands the skill from LinkedIn-only to a general candidate-sourcing bot ([PR #2
 - **Frontmatter / title:** repositioned from "LinkedIn Sourcing Skill" to "Candidate Sourcing
   Skill" to reflect the broader scope.
 
+## 2026-07-03 — Add release badge to README ([PR #21](https://github.com/Da6ka/linkedin-sourcing-skill/pull/21))
+
+Added a shields.io release badge next to the CI badge, linking to the latest GitHub release.
+
 ## 2026-07-04 — Cowork pause + rate-limit footnote
 
 Fixes from a cross-check against a third-party LinkedIn rate-limit breakdown ([PR #19](https://github.com/Da6ka/linkedin-sourcing-skill/pull/19)):
@@ -164,6 +177,15 @@ Fixes from a cross-check against a third-party LinkedIn rate-limit breakdown ([P
   a separate, deliberate decision point rather than bundled into the same response.
 - **SKILL.md:** strengthened the Cowork risk disclaimer so the user is asked to consciously confirm
   they're ready to accept the account risk, rather than treating a quick "ok" as informed consent.
+
+## 2026-07-02 — Guard the validator against spaces-in-path and Windows regressions ([PR #18](https://github.com/Da6ka/linkedin-sourcing-skill/pull/18))
+
+Follow-up to the `fileURLToPath` fix below: CI previously only ran `validate-skill.mjs` on
+`ubuntu-latest` at a space-free workspace path, so a regression back to `new URL(...).pathname`
+would still have passed green. CI now runs the validator on a `ubuntu-latest` +
+`windows-latest` matrix, checking out into a directory named `space dir` so the full path
+contains a space — the exact case that used to crash the old validator with an uncaught
+`ENOENT`.
 
 ## 2026-07-03 — release-audit fixes
 
@@ -182,6 +204,11 @@ Fixes from a pre-release audit; no workflow changes:
   notice — previously the rule was stated but not modelled by a single example.
 - **Length guidance:** reconciled `outreach-examples.md` with SKILL.md so both frame 80–120 words the
   same way, and noted that the examples are skeletons a finished message expands to fill.
+
+## 2026-07-02 — Add FAQ section to README ([PR #16](https://github.com/Da6ka/linkedin-sourcing-skill/pull/16))
+
+Added a "Frequently asked questions" section to README covering common setup and usage
+questions.
 
 ## [v1.0.0](https://github.com/Da6ka/linkedin-sourcing-skill/releases/tag/v1.0.0) — 2026-07-02
 
@@ -215,6 +242,17 @@ by design.
 - **README:** added a "confirm it loaded" tip to the install section (`/skills` or paste a JD)
 - **Contributor onboarding:** added `CONTRIBUTING.md`, GitHub issue templates (bug report,
   triggering issue) and a pull-request template
+
+## 2026-07-02 — Add CI status badge to README ([PR #10](https://github.com/Da6ka/linkedin-sourcing-skill/pull/10))
+
+Added the CI workflow status badge under the README title.
+
+## 2026-07-02 — Add skill validation and CI ([PR #9](https://github.com/Da6ka/linkedin-sourcing-skill/pull/9))
+
+Added `validate-skill.mjs`, a dependency-free Node validator checking that `SKILL.md` has
+`name:`/`description:` frontmatter and that every relative Markdown link across the repo
+resolves to an existing file, and `.github/workflows/ci.yml` to run it on every push/PR to
+`main` — the repo's first CI gate.
 
 ## 2026-07-02 — staged delivery with two checkpoints
 
