@@ -17,7 +17,8 @@ better — include the input you gave (a sanitised JD is fine), what you expecte
 2. Make your edit. The important files:
    - `SKILL.md` — the workflow instructions Claude follows (the heart of the skill).
    - `README.md` — human-facing docs, install steps, and the responsible-use section.
-   - `references/` — the Boolean search guide and outreach examples the skill pulls in on demand.
+   - `references/` — the Boolean search guide, outreach examples, other-platforms decision
+     table/recipes, and the worked walkthrough, all pulled in by SKILL.md on demand.
 3. Run the validator locally before pushing:
    ```bash
    node validate-skill.mjs

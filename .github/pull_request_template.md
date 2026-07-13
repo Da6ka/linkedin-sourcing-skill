@@ -7,7 +7,7 @@
 - [ ] Bug fix (workflow produced a wrong result)
 - [ ] Triggering fix (skill fired / didn't fire when it should)
 - [ ] Docs / README
-- [ ] Reference material (Boolean guide, outreach examples)
+- [ ] Reference material (Boolean guide, outreach examples, other-platforms, walkthrough)
 - [ ] Other
 
 ## Checklist
