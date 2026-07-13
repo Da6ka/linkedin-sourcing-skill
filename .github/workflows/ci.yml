@@ -18,14 +18,14 @@ jobs:
       # windows-latest, this exercises the validator's own path + line-ending
       # handling — the cases a bare new URL(...).pathname and /^---\n/ break on.
       - name: Checkout into a path containing a space
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
-          path: 'space dir'
-      - uses: actions/setup-node@v4
+          path: "space dir"
+      - uses: actions/setup-node@v6
         with:
           node-version: 22
       - name: Validate skill structure and links
-        working-directory: 'space dir'
+        working-directory: "space dir"
         run: node validate-skill.mjs
 
   # Aggregate gate. This job's name is the required status check on main
