@@ -112,22 +112,24 @@ Instead of one flat list, candidates land in a rubric-scored, tiered tracker:
 | AI-tool fluency                        | Names specific tools used in real workflow            |     |
 | Junior/executor fit at budget & region | Verifiable English + region (or approved exception)   |     |
 
-| Tier                     | Meaning                                                       | Count (this run) |
-| ------------------------ | ------------------------------------------------------------- | ---------------- |
-| 1 — Priority outreach    | Verified strong match, or explicitly approved exception       | 7                |
-| 2 — Worth a conversation | Plausible, unverified or partially verified                   | 13               |
-| 3 — Low priority         | Thin profile or minor concerns                                | 33               |
-| 4 — Reject               | Verified disqualifier (geography, seniority, language, niche) | 14               |
+| Tier                     | Score band | Meaning                                                                                                                                        | Count (this run) |
+| ------------------------ | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| 1 — Priority outreach    | 12–15      | Verified strong match, or explicitly approved exception                                                                                        | 7                |
+| 2 — Worth a conversation | 8–11       | Plausible, unverified or partially verified                                                                                                    | 13               |
+| 3 — Pass                 | Below 8    | Thin profile, minor concerns, or a verified disqualifier (geography, seniority, language, niche) — unless a strong compensating factor applies | 47               |
 
-72 candidates total, sourced across roughly a dozen search rounds. Fewer than a third survive to
+67 candidates total, sourced across roughly a dozen search rounds. Fewer than a third survive to
 Tier 1 or 2 once verification is applied — which is the point.
 
 **On the numbers:** this reflects several accumulated Scenario-1/Scenario-5 rounds over the
 life of this search, not a single sourcing run. One run stays within SKILL.md's per-run budget
-(15–20 profiles, 4–6 searches) — the 72-candidate, dozen-round total shown here is the running
+(15–20 profiles, 4–6 searches) — the 67-candidate, dozen-round total shown here is the running
 total across multiple "another round" cycles, each individually budget-compliant. Read the
 tiered counts above as the search's cumulative funnel, not evidence that the per-run guardrails
-were relaxed or ignored.
+were relaxed or ignored. The tiers themselves match SKILL.md's Module 3 scorecard exactly —
+score 12–15 (priority outreach), 8–11 (worth a conversation), and below 8 (pass unless a strong
+compensating factor applies) — rather than a finer-grained split the actual scorecard output
+doesn't produce.
 
 ## Stage 6 — Outreach, only for the survivors
 
