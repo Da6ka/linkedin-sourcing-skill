@@ -11,7 +11,7 @@ A [Claude Code](https://claude.com/claude-code) skill for candidate sourcing —
 
 When triggered (e.g. by pasting a JD, asking to "find candidates", "source for this role", or "write outreach"), the skill walks through a full sourcing workflow:
 
-1. Asks what type of candidates you're sourcing (tech, design, data/ML, algorithm-heavy, commercial/general, RU/CIS market) and picks the right source mix accordingly — LinkedIn always runs; GitHub, Stack Overflow, Kaggle, Codeforces, Dribbble, Behance, hh.ru, geekjob.ru, Reddit, Twitter/X, or Telegram are added when they fit the role (see `references/other-platforms.md`)
+1. Asks what type of candidates you're sourcing (tech, design, data/ML, algorithm-heavy, commercial/general, RU/CIS market) and picks the right source mix accordingly — LinkedIn always runs; GitHub, Stack Overflow, Kaggle, Codeforces, Dribbble, Behance, hh.ru, geekjob.ru, Reddit, Twitter/X, Telegram, or Threads are added when they fit the role (see `references/other-platforms.md`)
 2. Synthesises the role/briefing into a candidate persona
 3. Finds real profiles via web search across the selected sources
 4. Offers an optional, opt-in step to collect full LinkedIn profile text into a candidate tracker via the [Cowork](https://claude.com/product/cowork) browser — presented with a risk disclaimer and only generated if you say yes (requires Cowork and a logged-in LinkedIn session; see Part C in `SKILL.md` and "Avoiding LinkedIn account restrictions" below)
@@ -196,7 +196,7 @@ exposure. See the hh.ru section of `references/other-platforms.md` for the full 
 
 The points below focus on LinkedIn since it's the platform every run touches. When a run also
 searches GitHub, Stack Overflow, Kaggle, Codeforces, Dribbble, Behance, hh.ru, geekjob.ru,
-Reddit, Twitter/X, or Telegram, the same principles apply — the skill uses public search
+Reddit, Twitter/X, Telegram, or Threads, the same principles apply — the skill uses public search
 (X-ray or each platform's native search) rather than scraping, but each platform has its own
 terms of service, and hh.ru's carries a materially stronger legal risk (see the FAQ above and
 `references/other-platforms.md`). You are responsible for complying with each platform's terms.
