@@ -22,7 +22,7 @@ Are you open to a 30-minute call next week?
 
 ---
 
-### Variant 2 — Recognition
+### Variant 2 — Recognition / flattery
 
 **Hook:** Candidate grew a team from 3 to 18 people — a concrete fact from their profile.
 
@@ -69,7 +69,7 @@ Open to a conversation next week?
 
 ## Technology / Product
 
-### Variant 2 — Recognition
+### Variant 2 — Recognition / flattery
 
 **Hook:** A public product launch or metric findable in the candidate's profile/publications.
 
