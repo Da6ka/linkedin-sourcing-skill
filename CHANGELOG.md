@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-07-15 — Add live web-app demo to README as a showcase ([PR #56](https://github.com/Da6ka/tech-sourcing-skill/pull/56))
+
+README gains a "Live demo" section linking to `tech-sourcing-webapp.pages.dev`, a Cloudflare
+Worker + Pages wrapper around this skill (Claude API + Firecrawl search), so readers can try the
+full pipeline without installing Claude Code. Summarizes a verified live run (Go/fintech JD → 17
+LinkedIn + 3 GitHub profiles, scorecard, outreach drafts, ~2 min end to end) without reproducing
+real candidates' names. The web-app wrapper's code isn't part of this repo — this skill still
+works standalone in Claude Code; the web app is just one possible harness around it.
+
 ## v2.1.0 — Worked-example wiring and consistency fixes
 
 Note: the entries for PR #40 and PRs #42/#44 below were previously filed under v2.0.1, but
