@@ -103,6 +103,21 @@ LinkedIn snippet, and how the skill handles judgment calls like geography except
 [`references/example-walkthrough.md`](references/example-walkthrough.md).
 
 
+## Live demo
+
+**[tech-sourcing-webapp.pages.dev](https://tech-sourcing-webapp.pages.dev)** — a small web app
+wrapping this skill, so anyone can try it without installing Claude Code. Paste a JD, get the full
+pipeline back in the browser: persona → live search across LinkedIn and adjacent platforms →
+scorecard → outreach drafts. Same skill, same rules (real X-ray search, no invented URLs) — just a
+different harness (a Cloudflare Worker calling the Claude API instead of Claude Code itself).
+
+Verified live: a "Senior Backend Engineer (Go), remote, fintech" JD returned 17 real LinkedIn
+profiles and 3 GitHub profiles matching the persona (Go 4+ years, distributed systems, Kubernetes,
+Postgres, fintech/payments), a 5-criterion scorecard, and 3 outreach variants — end to end in about
+two minutes. Real candidate names aren't reproduced here since they're live strangers' public
+profiles, not illustrative placeholders — run it yourself to see full results for any role.
+
+
 ## Avoiding LinkedIn account restrictions
 
 LinkedIn monitors for automated or bot-like behaviour. To keep your account safe while using this skill, follow these precautions:
