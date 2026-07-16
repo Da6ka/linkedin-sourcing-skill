@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { SKILL_SYSTEM_PROMPT } from "./skillPrompt";
 import { searchWeb } from "./search";
+import { fetchProfile } from "./enrich";
 
 const MODEL = "claude-opus-4-8";
 const MAX_TOKENS = 8192;
@@ -27,9 +28,31 @@ const SEARCH_TOOL: Anthropic.Tool = {
   },
 };
 
+const FETCH_PROFILE_TOOL: Anthropic.Tool = {
+  name: "fetch_profile",
+  description:
+    "Enrich a single profile URL you already found with search_web, returning structured " +
+    "data for scoring. LinkedIn URLs return dated employment history from Apollo (falling " +
+    "back to a search snippet if Apollo has no match); other URLs (GitHub, Stack Overflow, " +
+    "hh.ru, personal sites) return the scraped page text. Returns no personal email or phone. " +
+    "Costs money per call — only enrich High-confidence LinkedIn profiles, at most ~5 per run.",
+  input_schema: {
+    type: "object",
+    properties: {
+      url: {
+        type: "string",
+        description:
+          "A profile URL returned by a prior search_web result. Never a URL you constructed yourself.",
+      },
+    },
+    required: ["url"],
+  },
+};
+
 export interface AgentEnv {
   ANTHROPIC_API_KEY: string;
   FIRECRAWL_API_KEY: string;
+  APOLLO_API_KEY: string;
 }
 
 export async function runSourcingAgent(
@@ -53,7 +76,7 @@ export async function runSourcingAgent(
           cache_control: { type: "ephemeral", ttl: "1h" },
         },
       ],
-      tools: [SEARCH_TOOL],
+      tools: [SEARCH_TOOL, FETCH_PROFILE_TOOL],
       messages,
     });
 
@@ -71,25 +94,45 @@ export async function runSourcingAgent(
 
     const toolResults: Anthropic.ToolResultBlockParam[] = [];
     for (const block of response.content) {
-      if (block.type !== "tool_use" || block.name !== "search_web") continue;
+      if (block.type !== "tool_use") continue;
 
-      const input = block.input as { query: string; num_results?: number };
+      // Each tool runs in its own try/catch so a single failed call comes back as an
+      // is_error tool_result the model can react to, rather than aborting the whole run.
       try {
-        const results = await searchWeb(
-          env.FIRECRAWL_API_KEY,
-          input.query,
-          input.num_results,
-        );
+        let content: string;
+        switch (block.name) {
+          case "search_web": {
+            const input = block.input as {
+              query: string;
+              num_results?: number;
+            };
+            content = JSON.stringify(
+              await searchWeb(
+                env.FIRECRAWL_API_KEY,
+                input.query,
+                input.num_results,
+              ),
+            );
+            break;
+          }
+          case "fetch_profile": {
+            const input = block.input as { url: string };
+            content = JSON.stringify(await fetchProfile(env, input.url));
+            break;
+          }
+          default:
+            continue;
+        }
         toolResults.push({
           type: "tool_result",
           tool_use_id: block.id,
-          content: JSON.stringify(results),
+          content,
         });
       } catch (err) {
         toolResults.push({
           type: "tool_result",
           tool_use_id: block.id,
-          content: `Search failed: ${err instanceof Error ? err.message : String(err)}`,
+          content: `Tool ${block.name} failed: ${err instanceof Error ? err.message : String(err)}`,
           is_error: true,
         });
       }
