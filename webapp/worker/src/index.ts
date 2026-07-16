@@ -10,6 +10,12 @@ export interface Env {
   RATE_LIMITER: DurableObjectNamespace<RateLimiterDO>;
 }
 
+// A real job description is a few thousand characters. This ceiling is well clear of
+// any legitimate JD while bounding what one request can cost: the body is billed as
+// Opus input tokens, and the whole conversation is resent on every one of the up-to-12
+// agent turns, so unbounded input grows spend quadratically in turns.
+const MAX_JD_CHARS = 20_000;
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     if (request.method === "OPTIONS") {
@@ -55,6 +61,17 @@ export default {
         new Response(JSON.stringify({ error: "jobDescription is required" }), {
           status: 400,
         }),
+      );
+    }
+
+    if (jobDescription.length > MAX_JD_CHARS) {
+      return withCors(
+        new Response(
+          JSON.stringify({
+            error: `jobDescription is too long (${jobDescription.length} characters, max ${MAX_JD_CHARS}).`,
+          }),
+          { status: 413, headers: { "Content-Type": "application/json" } },
+        ),
       );
     }
 
