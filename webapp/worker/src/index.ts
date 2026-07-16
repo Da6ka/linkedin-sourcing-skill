@@ -30,6 +30,13 @@ export default {
       return cors(new Response("Not found", { status: 404 }));
     }
 
+    // The "unknown" fallback is unreachable in practice, and safe if it ever is reached.
+    // Cloudflare sets cf-connecting-ip on every request that arrives here and rejects any
+    // client that supplies its own with a 403 at the edge, before the Worker runs — so the
+    // header cannot be spoofed to mint a fresh bucket. wrangler dev sets it too (::1), so
+    // local runs don't hit this either. If it were somehow missing, sharing one bucket is
+    // the restrictive direction: those callers would collectively get MAX_REQUESTS_PER_WINDOW
+    // per window, not an unlimited one each.
     const ip = request.headers.get("cf-connecting-ip") ?? "unknown";
     const stub = env.RATE_LIMITER.get(env.RATE_LIMITER.idFromName(ip));
     const { allowed, remaining, retryAfterSeconds } =
