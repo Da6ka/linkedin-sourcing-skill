@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-07-16 — Add web-app wrapper as webapp/, switch rate limiting to a Durable Object ([PR #58](https://github.com/Da6ka/tech-sourcing-skill/pull/58))
+
+The Cloudflare Worker + Pages code behind the live demo (linked from the README in #56) is now
+part of this repo, under `webapp/worker` and `webapp/frontend` — previously it only existed as an
+untracked local project. The Worker reads `SKILL.md` and `references/*.md` directly from the repo
+root at build time, so there's no embedded copy to drift out of sync. Also swapped the demo's
+rate limiter from Workers KV to a Durable Object: KV is only eventually consistent and could
+under-count a fast burst from one IP for up to ~60s before writes propagate, whereas a Durable
+Object is single-threaded per instance and race-free. Verified locally (clean 5-allowed-then-429
+sequence) and in production.
+
 ## 2026-07-15 — Add live web-app demo to README as a showcase ([PR #56](https://github.com/Da6ka/tech-sourcing-skill/pull/56))
 
 README gains a "Live demo" section linking to `tech-sourcing-webapp.pages.dev`, a Cloudflare
