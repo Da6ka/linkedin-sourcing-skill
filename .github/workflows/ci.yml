@@ -28,10 +28,30 @@ jobs:
         working-directory: "space dir"
         run: node validate-skill.mjs
 
+  # The Worker is real TypeScript that ships to production, so it needs a build-time
+  # check of its own. validate-skill.mjs only checks the skill's Markdown structure and
+  # would stay green through any type error here.
+  typecheck:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: webapp/worker
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: webapp/worker/package-lock.json
+      - name: Install worker dependencies
+        run: npm ci
+      - name: Typecheck worker
+        run: npm run typecheck
+
   # Aggregate gate. This job's name is the required status check on main
-  # ("validate"); it passes only if every matrix leg above succeeds.
+  # ("validate"); it passes only if every job above succeeds.
   validate:
-    needs: test
+    needs: [test, typecheck]
     runs-on: ubuntu-latest
     steps:
-      - run: echo "All matrix legs passed."
+      - run: echo "All checks passed."
