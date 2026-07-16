@@ -267,7 +267,11 @@ always-loaded frontmatter/instruction body smaller.
   check, not an assumption.
 - **Releases.** User-facing milestones get a matching GitHub Release via `gh release create` —
   v1.0.0 (initial), v1.1.0 (multi-platform expansion), v2.0.0 (rename from `linkedin-sourcing-skill`
-  to `tech-sourcing-skill`, reflecting the platform expansion beyond LinkedIn-only).
+  to `tech-sourcing-skill`, reflecting the platform expansion beyond LinkedIn-only), v2.0.1
+  (edge-case hardening), v2.1.0 (worked-example wiring and consistency fixes), v2.2.0 (the hosted
+  web-app demo under `webapp/`, its security hardening, and profile enrichment). The README's
+  release badge links to a version-pinned release URL, so cutting a release means bumping that
+  link in the same cycle or it points at the previous one.
 - **Local/remote sync.** The local install (`~/.claude/skills/tech-sourcing/`) is a git clone of
   the GitHub repo (`origin` points there). `git pull --ff-only origin main` updates the local copy,
   but a push to GitHub does not auto-update it, and the local copy can carry uncommitted edits that
