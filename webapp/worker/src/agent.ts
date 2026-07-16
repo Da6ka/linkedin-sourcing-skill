@@ -65,6 +65,13 @@ export async function runSourcingAgent(
     { role: "user", content: jobDescription },
   ];
 
+  // The model writes each stage of the workflow — persona, Boolean strings, notes on what a
+  // search turned up — as text in the same turn it calls its tools. Returning only the final
+  // turn's text therefore dropped everything except the last stage, and the caller got a
+  // write-up that opened mid-thought, referring to work it never saw. Collect the text from
+  // every turn instead and return the whole transcript.
+  const sections: string[] = [];
+
   for (let turn = 0; turn < MAX_AGENT_TURNS; turn++) {
     const response = await client.messages.create({
       model: MODEL,
@@ -82,14 +89,21 @@ export async function runSourcingAgent(
 
     messages.push({ role: "assistant", content: response.content });
 
+    // flatMap rather than filter so TypeScript narrows the block to a text block. A single
+    // response can carry more than one text block; keep them all.
+    const turnText = response.content
+      .flatMap((block) => (block.type === "text" ? [block.text.trim()] : []))
+      .filter(Boolean)
+      .join("\n\n");
+    if (turnText) sections.push(turnText);
+
     if (response.stop_reason !== "tool_use") {
-      const finalText = response.content.find((block) => block.type === "text");
-      if (!finalText || finalText.type !== "text") {
+      if (sections.length === 0) {
         throw new Error(
-          `No text in final response (stop_reason: ${response.stop_reason})`,
+          `No text in any response (stop_reason: ${response.stop_reason})`,
         );
       }
-      return finalText.text;
+      return sections.join("\n\n");
     }
 
     const toolResults: Anthropic.ToolResultBlockParam[] = [];
