@@ -151,6 +151,20 @@
         border-radius: 4px;
         font-size: 13px;
       }
+      .result pre {
+        background: var(--code-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px 14px;
+        overflow-x: auto;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+      .result pre code {
+        background: none;
+        padding: 0;
+        font-size: inherit;
+      }
       .result blockquote {
         margin: 12px 0;
         padding: 4px 14px;
@@ -315,6 +329,7 @@
 
       function isBlockStart(line) {
         return (
+          line.trim().startsWith("```") ||
           /^#{1,6}\s+/.test(line) ||
           /^\s*[-*]\s+/.test(line) ||
           /^\s*\d+\.\s+/.test(line) ||
@@ -334,6 +349,21 @@
 
           if (line.trim() === "") {
             i++;
+            continue;
+          }
+
+          if (line.trim().startsWith("```")) {
+            // Verbatim block: no inline() pass, so Boolean strings and search
+            // operators survive exactly as the model wrote them. An unterminated
+            // fence runs to the end of the output rather than swallowing nothing.
+            const fenceLines = [];
+            i++;
+            while (i < lines.length && !lines[i].trim().startsWith("```")) {
+              fenceLines.push(lines[i]);
+              i++;
+            }
+            i++;
+            html += `<pre><code>${escapeHtml(fenceLines.join("\n"))}</code></pre>`;
             continue;
           }
 
@@ -427,7 +457,12 @@
             paraLines.push(lines[i]);
             i++;
           }
-          html += `<p>${inline(paraLines.join(" "))}</p>`;
+          // Join with <br>, not " ": the skill's Boolean-string format emits a bold
+          // label and the LinkedIn:/Google: strings as consecutive bare lines, and
+          // collapsing them into one run-on paragraph makes the strings — the main
+          // deliverable — impossible to copy. Each line is escaped by inline() before
+          // the <br> is added, so the raw tag can't be injected from model output.
+          html += `<p>${paraLines.map((l) => inline(l.trim())).join("<br>")}</p>`;
         }
 
         return html;
