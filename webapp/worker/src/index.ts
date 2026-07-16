@@ -7,6 +7,7 @@ export { RateLimiterDO };
 export interface Env {
   ANTHROPIC_API_KEY: string;
   FIRECRAWL_API_KEY: string;
+  APOLLO_API_KEY: string;
   RATE_LIMITER: DurableObjectNamespace<RateLimiterDO>;
 }
 

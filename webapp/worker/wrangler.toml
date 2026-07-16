@@ -25,3 +25,4 @@ enabled = true
 # Secrets (set via `wrangler secret put`, never in this file):
 #   ANTHROPIC_API_KEY
 #   FIRECRAWL_API_KEY
+#   APOLLO_API_KEY
