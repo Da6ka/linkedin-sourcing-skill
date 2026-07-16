@@ -86,10 +86,15 @@ export default {
         ),
       );
     } catch (err) {
+      // Log the detail, return a generic message. Upstream failures reach here with
+      // their raw bodies attached — searchWeb interpolates Firecrawl's response text
+      // into its error, and Anthropic SDK errors carry request detail — none of which
+      // should be echoed to an unauthenticated caller.
+      console.error("Sourcing run failed:", err);
       return withCors(
         new Response(
           JSON.stringify({
-            error: err instanceof Error ? err.message : "Unknown error",
+            error: "Sourcing run failed. Please try again.",
           }),
           { status: 500, headers: { "Content-Type": "application/json" } },
         ),

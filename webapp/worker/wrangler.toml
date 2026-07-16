@@ -16,6 +16,12 @@ class_name = "RateLimiterDO"
 tag = "v1"
 new_sqlite_classes = ["RateLimiterDO"]
 
+# The /api/source catch block returns a generic message and logs the real error, so
+# retained logs are the only place upstream failures are visible after the fact.
+# Without this, console.error is only observable during a live `wrangler tail`.
+[observability]
+enabled = true
+
 # Secrets (set via `wrangler secret put`, never in this file):
 #   ANTHROPIC_API_KEY
 #   FIRECRAWL_API_KEY

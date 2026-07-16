@@ -23,9 +23,15 @@ export async function searchWeb(
   });
 
   if (!response.ok) {
-    throw new Error(
-      `Firecrawl search failed: ${response.status} ${await response.text()}`,
+    // Keep the raw body out of the thrown error: this message is surfaced to the model
+    // as a tool_result, and the model's text is returned to the caller — so an
+    // interpolated body could reach a client through a 200, not just a 500. The status
+    // alone is enough for the model to decide whether to retry or move on.
+    console.error(
+      `Firecrawl search failed: ${response.status}`,
+      await response.text(),
     );
+    throw new Error(`Firecrawl search failed with status ${response.status}`);
   }
 
   const data = (await response.json()) as {
