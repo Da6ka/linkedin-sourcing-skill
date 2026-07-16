@@ -1,0 +1,21 @@
+name = "tech-sourcing-webapp"
+main = "src/index.ts"
+compatibility_date = "2026-07-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[rules]]
+type = "Text"
+globs = ["**/*.md"]
+fallthrough = true
+
+[[durable_objects.bindings]]
+name = "RATE_LIMITER"
+class_name = "RateLimiterDO"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["RateLimiterDO"]
+
+# Secrets (set via `wrangler secret put`, never in this file):
+#   ANTHROPIC_API_KEY
+#   FIRECRAWL_API_KEY

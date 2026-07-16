@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tech Sourcing — live demo</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f7f7f8;
+        --card: #ffffff;
+        --border: #e2e2e6;
+        --text: #1a1a1e;
+        --text-secondary: #55555c;
+        --accent: #5b4bda;
+        --accent-text: #ffffff;
+        --code-bg: #f0f0f3;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #16161a;
+          --card: #1e1e23;
+          --border: #313138;
+          --text: #f0f0f2;
+          --text-secondary: #a3a3ad;
+          --accent: #8a7dff;
+          --accent-text: #0f0f12;
+          --code-bg: #26262d;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.55;
+      }
+      .wrap {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 40px 20px 80px;
+      }
+      header h1 {
+        font-size: 26px;
+        margin: 0 0 6px;
+      }
+      header p {
+        color: var(--text-secondary);
+        margin: 0 0 28px;
+        font-size: 15px;
+      }
+      header p a {
+        color: var(--accent);
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px;
+      }
+      textarea {
+        width: 100%;
+        min-height: 160px;
+        resize: vertical;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: transparent;
+        color: var(--text);
+        font-family: inherit;
+        font-size: 14px;
+        padding: 12px;
+      }
+      textarea:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 1px;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 14px;
+        gap: 12px;
+      }
+      button {
+        background: var(--accent);
+        color: var(--accent-text);
+        border: none;
+        border-radius: 8px;
+        padding: 10px 18px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      .status {
+        font-size: 13px;
+        color: var(--text-secondary);
+      }
+      .result-card {
+        margin-top: 24px;
+        display: none;
+      }
+      .result-card.visible {
+        display: block;
+      }
+      .error-card {
+        margin-top: 24px;
+        display: none;
+        border-color: #d84a4a;
+      }
+      .error-card.visible {
+        display: block;
+      }
+      .error-card p {
+        margin: 0;
+        color: #d84a4a;
+        font-size: 14px;
+      }
+      .result h1,
+      .result h2,
+      .result h3 {
+        line-height: 1.3;
+      }
+      .result h1 {
+        font-size: 20px;
+      }
+      .result h2 {
+        font-size: 18px;
+        margin-top: 28px;
+      }
+      .result h3 {
+        font-size: 15px;
+      }
+      .result p {
+        font-size: 14.5px;
+      }
+      .result a {
+        color: var(--accent);
+      }
+      .result code {
+        background: var(--code-bg);
+        padding: 1px 5px;
+        border-radius: 4px;
+        font-size: 13px;
+      }
+      .result blockquote {
+        margin: 12px 0;
+        padding: 4px 14px;
+        border-left: 3px solid var(--border);
+        color: var(--text-secondary);
+        font-size: 13.5px;
+      }
+      .result table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 14px 0;
+        font-size: 13.5px;
+        display: block;
+        overflow-x: auto;
+      }
+      .result th,
+      .result td {
+        border: 1px solid var(--border);
+        padding: 6px 10px;
+        text-align: left;
+        vertical-align: top;
+      }
+      .result th {
+        background: var(--code-bg);
+      }
+      .result hr {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 24px 0;
+      }
+      .result ul,
+      .result ol {
+        font-size: 14.5px;
+        padding-left: 22px;
+      }
+      footer {
+        margin-top: 40px;
+        font-size: 12.5px;
+        color: var(--text-secondary);
+      }
+      footer a {
+        color: var(--text-secondary);
+      }
+      .spinner {
+        width: 14px;
+        height: 14px;
+        border: 2px solid var(--text-secondary);
+        border-top-color: transparent;
+        border-radius: 50%;
+        display: inline-block;
+        animation: spin 0.8s linear infinite;
+        vertical-align: middle;
+        margin-right: 6px;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Tech Sourcing — live demo</h1>
+        <p>
+          Paste a job description. This calls the real
+          <a
+            href="https://github.com/Da6ka/tech-sourcing-skill"
+            target="_blank"
+            rel="noopener noreferrer"
+            >tech-sourcing-skill</a
+          >
+          running on Claude — it builds a persona, runs live web searches across
+          LinkedIn and adjacent platforms (GitHub, Stack Overflow, hh.ru, etc.
+          depending on the role), and returns a scorecard plus outreach drafts.
+          Takes 30–150 seconds since it's doing real searches, not a canned
+          response.
+        </p>
+      </header>
+
+      <div class="card">
+        <textarea
+          id="jd"
+          placeholder="Paste a job description here…"
+        ></textarea>
+        <div class="row">
+          <button id="submit">Source candidates</button>
+          <span class="status" id="status"></span>
+        </div>
+      </div>
+
+      <div class="card error-card" id="errorCard">
+        <p id="errorText"></p>
+      </div>
+
+      <div class="card result-card" id="resultCard">
+        <div class="result" id="result"></div>
+      </div>
+
+      <footer>
+        Rate-limited to 5 runs/hour per visitor. No candidate data is stored
+        server-side beyond the request/response. Source:
+        <a
+          href="https://github.com/Da6ka/tech-sourcing-skill"
+          target="_blank"
+          rel="noopener noreferrer"
+          >github.com/Da6ka/tech-sourcing-skill</a
+        >
+      </footer>
+    </div>
+
+    <script>
+      const WORKER_URL =
+        location.hostname === "localhost" || location.hostname === "127.0.0.1"
+          ? "http://localhost:8799/api/source"
+          : "https://tech-sourcing-webapp.ai-in-ta-bot.workers.dev/api/source";
+
+      const jdEl = document.getElementById("jd");
+      const submitEl = document.getElementById("submit");
+      const statusEl = document.getElementById("status");
+      const resultCard = document.getElementById("resultCard");
+      const resultEl = document.getElementById("result");
+      const errorCard = document.getElementById("errorCard");
+      const errorText = document.getElementById("errorText");
+
+      function escapeHtml(s) {
+        return s
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;");
+      }
+
+      function inline(raw) {
+        let s = escapeHtml(raw);
+        s = s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+        s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
+        s = s.replace(
+          /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+          (_m, text, url) => {
+            return `<a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+          },
+        );
+        return s;
+      }
+
+      function splitTableRow(line) {
+        return line
+          .trim()
+          .replace(/^\|/, "")
+          .replace(/\|$/, "")
+          .split("|")
+          .map((c) => c.trim());
+      }
+
+      function isSeparatorRow(line) {
+        return /^\s*\|?[\s:-]+\|[\s:|-]*$/.test(line) && line.includes("-");
+      }
+
+      function isBlockStart(line) {
+        return (
+          /^#{1,6}\s+/.test(line) ||
+          /^\s*[-*]\s+/.test(line) ||
+          /^\s*\d+\.\s+/.test(line) ||
+          /^\s*>/.test(line) ||
+          /^-{3,}\s*$/.test(line) ||
+          line.includes("|")
+        );
+      }
+
+      function renderMarkdown(md) {
+        const lines = md.replace(/\r\n/g, "\n").split("\n");
+        let html = "";
+        let i = 0;
+
+        while (i < lines.length) {
+          const line = lines[i];
+
+          if (line.trim() === "") {
+            i++;
+            continue;
+          }
+
+          if (/^-{3,}\s*$/.test(line.trim())) {
+            html += "<hr>";
+            i++;
+            continue;
+          }
+
+          const headerMatch = line.match(/^(#{1,6})\s+(.*)$/);
+          if (headerMatch) {
+            const level = headerMatch[1].length;
+            html += `<h${level}>${inline(headerMatch[2])}</h${level}>`;
+            i++;
+            continue;
+          }
+
+          if (line.trim().startsWith(">")) {
+            const quoteLines = [];
+            while (i < lines.length && lines[i].trim().startsWith(">")) {
+              quoteLines.push(lines[i].trim().replace(/^>\s?/, ""));
+              i++;
+            }
+            html += `<blockquote>${inline(quoteLines.join(" "))}</blockquote>`;
+            continue;
+          }
+
+          if (
+            line.includes("|") &&
+            i + 1 < lines.length &&
+            isSeparatorRow(lines[i + 1])
+          ) {
+            const headerCells = splitTableRow(line);
+            i += 2;
+            const rows = [];
+            while (
+              i < lines.length &&
+              lines[i].includes("|") &&
+              lines[i].trim() !== ""
+            ) {
+              rows.push(splitTableRow(lines[i]));
+              i++;
+            }
+            html +=
+              "<table><thead><tr>" +
+              headerCells.map((c) => `<th>${inline(c)}</th>`).join("") +
+              "</tr></thead><tbody>";
+            rows.forEach((r) => {
+              html +=
+                "<tr>" +
+                r.map((c) => `<td>${inline(c)}</td>`).join("") +
+                "</tr>";
+            });
+            html += "</tbody></table>";
+            continue;
+          }
+
+          if (/^\s*[-*]\s+/.test(line)) {
+            const items = [];
+            while (i < lines.length && /^\s*[-*]\s+/.test(lines[i])) {
+              items.push(lines[i].replace(/^\s*[-*]\s+/, ""));
+              i++;
+            }
+            html +=
+              "<ul>" +
+              items.map((it) => `<li>${inline(it)}</li>`).join("") +
+              "</ul>";
+            continue;
+          }
+
+          if (/^\s*\d+\.\s+/.test(line)) {
+            const items = [];
+            while (i < lines.length && /^\s*\d+\.\s+/.test(lines[i])) {
+              items.push(lines[i].replace(/^\s*\d+\.\s+/, ""));
+              i++;
+            }
+            html +=
+              "<ol>" +
+              items.map((it) => `<li>${inline(it)}</li>`).join("") +
+              "</ol>";
+            continue;
+          }
+
+          const paraLines = [line];
+          i++;
+          while (
+            i < lines.length &&
+            lines[i].trim() !== "" &&
+            !isBlockStart(lines[i])
+          ) {
+            paraLines.push(lines[i]);
+            i++;
+          }
+          html += `<p>${inline(paraLines.join(" "))}</p>`;
+        }
+
+        return html;
+      }
+
+      let startTime = 0;
+      let tickHandle = null;
+
+      function startTicker() {
+        startTime = Date.now();
+        tickHandle = setInterval(() => {
+          const elapsed = Math.round((Date.now() - startTime) / 1000);
+          statusEl.textContent = `Running live searches… ${elapsed}s`;
+        }, 500);
+      }
+
+      function stopTicker() {
+        clearInterval(tickHandle);
+        statusEl.textContent = "";
+      }
+
+      async function runSourcing() {
+        const jobDescription = jdEl.value.trim();
+        if (!jobDescription) {
+          jdEl.focus();
+          return;
+        }
+
+        submitEl.disabled = true;
+        errorCard.classList.remove("visible");
+        resultCard.classList.remove("visible");
+        startTicker();
+
+        try {
+          const res = await fetch(WORKER_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ jobDescription }),
+          });
+          const data = await res.json();
+
+          if (!res.ok) {
+            throw new Error(data.error || `Request failed (${res.status})`);
+          }
+
+          resultEl.innerHTML = renderMarkdown(data.result || "");
+          resultCard.classList.add("visible");
+        } catch (err) {
+          errorText.textContent =
+            err instanceof Error ? err.message : String(err);
+          errorCard.classList.add("visible");
+        } finally {
+          stopTicker();
+          submitEl.disabled = false;
+        }
+      }
+
+      submitEl.addEventListener("click", runSourcing);
+      jdEl.addEventListener("keydown", (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === "Enter") runSourcing();
+      });
+    </script>
+  </body>
+</html>
