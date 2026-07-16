@@ -1,6 +1,6 @@
 import { runSourcingAgent } from "./agent";
 import { RateLimiterDO } from "./rateLimiterDO";
-import { CORS_HEADERS, withCors } from "./cors";
+import { corsHeaders, withCors } from "./cors";
 
 export { RateLimiterDO };
 
@@ -18,20 +18,23 @@ const MAX_JD_CHARS = 20_000;
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
+    const origin = request.headers.get("Origin");
+    const cors = (response: Response) => withCors(response, origin);
+
     if (request.method === "OPTIONS") {
-      return new Response(null, { headers: CORS_HEADERS });
+      return new Response(null, { headers: corsHeaders(origin) });
     }
 
     const url = new URL(request.url);
     if (url.pathname !== "/api/source" || request.method !== "POST") {
-      return withCors(new Response("Not found", { status: 404 }));
+      return cors(new Response("Not found", { status: 404 }));
     }
 
     const ip = request.headers.get("cf-connecting-ip") ?? "unknown";
     const stub = env.RATE_LIMITER.get(env.RATE_LIMITER.idFromName(ip));
     const { allowed, remaining } = await stub.checkAndIncrement();
     if (!allowed) {
-      return withCors(
+      return cors(
         new Response(
           JSON.stringify({
             error: "Rate limit exceeded. Try again in an hour.",
@@ -49,7 +52,7 @@ export default {
       const body = (await request.json()) as { jobDescription?: string };
       jobDescription = (body.jobDescription ?? "").trim();
     } catch {
-      return withCors(
+      return cors(
         new Response(JSON.stringify({ error: "Invalid JSON body" }), {
           status: 400,
         }),
@@ -57,7 +60,7 @@ export default {
     }
 
     if (!jobDescription) {
-      return withCors(
+      return cors(
         new Response(JSON.stringify({ error: "jobDescription is required" }), {
           status: 400,
         }),
@@ -65,7 +68,7 @@ export default {
     }
 
     if (jobDescription.length > MAX_JD_CHARS) {
-      return withCors(
+      return cors(
         new Response(
           JSON.stringify({
             error: `jobDescription is too long (${jobDescription.length} characters, max ${MAX_JD_CHARS}).`,
@@ -77,7 +80,7 @@ export default {
 
     try {
       const result = await runSourcingAgent(env, jobDescription);
-      return withCors(
+      return cors(
         new Response(
           JSON.stringify({ result, rateLimitRemaining: remaining }),
           {
@@ -91,7 +94,7 @@ export default {
       // into its error, and Anthropic SDK errors carry request detail — none of which
       // should be echoed to an unauthenticated caller.
       console.error("Sourcing run failed:", err);
-      return withCors(
+      return cors(
         new Response(
           JSON.stringify({
             error: "Sourcing run failed. Please try again.",
