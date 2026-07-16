@@ -8,7 +8,6 @@ export interface EnrichedProfile {
   name?: string;
   title?: string;
   headline?: string;
-  seniority?: string;
   location?: string;
   // Trimmed employment history — Apollo returns far more (org tech stacks, keywords,
   // ids) that would blow the token budget when fed back into the agent.
@@ -50,7 +49,6 @@ interface ApolloPerson {
   name?: string;
   title?: string;
   headline?: string;
-  seniority?: string;
   city?: string;
   state?: string;
   country?: string;
@@ -91,13 +89,16 @@ export async function enrichViaApollo(
 
   const location = [person.city, person.country].filter(Boolean).join(", ");
 
+  // Deliberately drop Apollo's `seniority` field: it is unreliable (observed labelling a
+  // 20-year architect and a mid-career senior DE both as "entry"). The dated
+  // employmentHistory below is the trustworthy signal for scoring; leave seniority to
+  // the model to infer from it rather than feeding a wrong label.
   return {
     source: "apollo",
     url: linkedinUrl,
     name: person.name,
     title: person.title,
     headline: person.headline,
-    seniority: person.seniority,
     location: location || undefined,
     employmentHistory: (person.employment_history ?? []).map((e) => ({
       title: e.title ?? null,
