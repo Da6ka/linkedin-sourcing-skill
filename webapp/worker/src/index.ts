@@ -32,16 +32,23 @@ export default {
 
     const ip = request.headers.get("cf-connecting-ip") ?? "unknown";
     const stub = env.RATE_LIMITER.get(env.RATE_LIMITER.idFromName(ip));
-    const { allowed, remaining } = await stub.checkAndIncrement();
+    const { allowed, remaining, retryAfterSeconds } =
+      await stub.checkAndIncrement();
     if (!allowed) {
+      // The sliding window knows exactly when the oldest hit ages out, so report that
+      // rather than the old flat "an hour" — which was usually an overestimate.
+      const minutes = Math.ceil(retryAfterSeconds / 60);
       return cors(
         new Response(
           JSON.stringify({
-            error: "Rate limit exceeded. Try again in an hour.",
+            error: `Rate limit exceeded. Try again in ${minutes} minute${minutes === 1 ? "" : "s"}.`,
           }),
           {
             status: 429,
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              "Content-Type": "application/json",
+              "Retry-After": String(retryAfterSeconds),
+            },
           },
         ),
       );
