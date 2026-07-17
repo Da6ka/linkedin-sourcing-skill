@@ -22,11 +22,14 @@ Russian persona, which is exactly what this release stops.
 The demo's `isCyrillicJd` helper is removed rather than kept: with the JD no longer a language
 signal, the turn-cap note is unconditionally English and there was nothing left to detect.
 
-Also closes a gap in the anglicism rule, which carried one example («наблюдение», not «финдинг») —
-too few to generalise from, so the skill emitted «сеньорность» while obeying the rule as written.
-It now names that calque and, more importantly, carves out established loanwords: «кандидат»,
-«гипотеза», «воронка», «локация», «стек», «аутрич» are ordinary Russian and stay, so the rule
-cannot over-correct its way into stilted prose.
+Also tightens the anglicism rule, which carried one example («наблюдение», not «финдинг») — too
+few to generalise from, leaving the model to guess which borrowings are jargon and which are
+ordinary Russian. It now carves out established IT and recruiting usage explicitly: «кандидат»,
+«гипотеза», «воронка», «локация», «стек», «аутрич», «сеньорность» are ordinary and stay, so the
+rule cannot over-correct into «соискатель» and «предположение». The banned list is unchanged —
+«сеньорность» reads as a violation of a naive "no anglicisms" reading but is settled IT usage, and
+this makes that explicit rather than leaving it to inference. Pins the spelling too: runs produced
+both «сеньорность» and «сениорность».
 
 ## 2026-07-17 — Match the JD's language by its body text, not its job title (v2.2.1)
 

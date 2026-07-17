@@ -44,9 +44,10 @@ profiles, gets a Russian persona and table but English outreach. Add a one-line 
 the outreach language differs from the rest of the output, so the user isn't surprised.
 
 When writing in Russian (or any non-English language), use native terms rather than English
-calques where a natural equivalent exists — «наблюдение», not «финдинг»; «уровень» or «этап
-карьеры», not «сеньорность». This targets transliterated jargon, not established loanwords:
-«кандидат», «гипотеза», «воронка», «локация», «стек», «аутрич» are ordinary usage and stay.
+calques where a natural equivalent exists — «наблюдение», not «финдинг». This targets
+transliterated jargon that has a natural Russian equivalent, not established IT and recruiting
+usage: «кандидат», «гипотеза», «воронка», «локация», «стек», «аутрич», «сеньорность» are ordinary
+and stay. Prefer the settled spelling «сеньорность» over «сениорность».
 
 ---
 
