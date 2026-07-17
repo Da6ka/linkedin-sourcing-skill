@@ -1,5 +1,26 @@
 # Changelog
 
+## 2026-07-17 — Return the partial transcript when the agent hits its turn cap ([PR #75](https://github.com/Da6ka/tech-sourcing-skill/pull/75))
+
+The demo agent's loop ended with an unconditional `throw`, so hitting `MAX_AGENT_TURNS` returned a
+500 and nothing else. That was cheap when only the final turn's text was ever returned — there was
+nothing worth salvaging — but #72 made the loop collect text from every turn, which turned the same
+throw into a discard of the whole write-up: persona, Boolean strings, profiles, all of it, after
+the caller had already waited about two minutes and paid for a full Opus run. #72 did not introduce
+the throw, it made the failure expensive.
+
+The loop now returns whatever sections the agent produced, followed by a note that the run stops
+short and that a more specific job description usually completes within the limit. It still throws
+when there is genuinely no text, since there is nothing to hand back.
+
+Verified by exercising the path rather than reasoning about it: with `MAX_AGENT_TURNS` temporarily
+set to 2, the full 3470-character JD run against a local `wrangler dev` returned HTTP 200 with 5106
+characters — a complete persona and the Boolean strings — plus the note, where the old code
+returned a 500. The cap was restored to 12 before the change was committed.
+
+Known wrinkle: the note is English while the write-up follows the JD's language, so a
+Russian-language run ends on an English sentence.
+
 ## 2026-07-16 — Override SKILL.md's checkpoints explicitly in the demo harness note ([PR #73](https://github.com/Da6ka/tech-sourcing-skill/pull/73))
 
 The hosted demo is a single request/response call: any question the model asks ends the run and
