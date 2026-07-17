@@ -1,5 +1,32 @@
 # Changelog
 
+## 2026-07-17 — The user picks who outreach is written for (v2.3.0)
+
+Module 4 hardcoded its target: outreach went to "the single highest-confidence profile from Module
+2", and the user could only redirect it afterwards, by naming someone once three variants for the
+wrong person had already been written. The waste was not really tokens — it was that outreach for
+a candidate the recruiter did not want is worth nothing.
+
+The choice now happens at **Checkpoint 2**, before Module 4 runs. That checkpoint already stops the
+run, and the user is already looking at the Module 2 profile table — numbered, with a confidence
+rating and a one-line rationale per row — so they can pick with the same information a dedicated
+pause would have shown them, and the invitation costs one clause rather than a turn.
+
+Deliberately *not* a new checkpoint. SKILL.md states that Modules 3 and 4 run together without a
+pause because both are cheap; adding one between them would have contradicted that for no saving.
+The design doc records the deviation.
+
+Module 4's scope text becomes a default rather than a law: absent a choice, the top-confidence
+profile is still used, stated in one line, and the run continues — the default is a real answer,
+not a placeholder, and the model is told not to stop and ask when the user has already had their
+chance to say. Multi-candidate outreach is capped at three (three candidates is nine messages,
+already more than anyone reads carefully); name more and the three highest-confidence win, with
+the omission stated.
+
+The hosted demo has no Checkpoint 2, so the harness note now resolves this choice explicitly to
+its documented default instead of leaving the model to infer that it may ask a question nobody can
+answer.
+
 ## 2026-07-17 — A JD is source material, not a language signal (v2.2.2)
 
 v2.2.1 fixed the wrong half of the rule. "Output language" said to write in English by default and

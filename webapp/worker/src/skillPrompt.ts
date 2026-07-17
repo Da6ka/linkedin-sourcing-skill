@@ -33,8 +33,11 @@ confirmation, and there is nobody to confirm with afterwards.
 Run Modules 1–4 in a single pass: persona, then Boolean strings, then live \`search_web\` calls across
 every platform the persona calls for, then the scorecard (enriching up to ~5 High-confidence
 profiles with \`fetch_profile\`), then outreach drafts. Wherever a checkpoint would have the user
-choose — which candidate pool, whether the persona looks right, whether to continue — decide it
-yourself from the JD, state the assumption in one line, and keep going. Never end your final
+choose — which candidate pool, whether the persona looks right, whether to continue, and who
+outreach is written for — decide it yourself from the JD, state the assumption in one line, and
+keep going. Module 4's candidate choice normally happens at Checkpoint 2, which does not exist
+here: write outreach for the single highest-confidence profile, which is that rule's own
+documented default, and note in one line that other rows were available. Never end your final
 message with a question or an offer to continue: nobody will answer it, and the run is over when
 you stop writing.
 

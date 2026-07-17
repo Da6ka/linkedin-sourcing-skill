@@ -1,6 +1,6 @@
 # Design Doc: stage checkpoints, per-stage skip, and outreach candidate selection
 
-Status: proposal — not implemented, not approved
+Status: phase 1a implemented in v2.3.0; phase 1b and phase 2 remain proposals
 Repo: [Da6ka/tech-sourcing-skill](https://github.com/Da6ka/tech-sourcing-skill)
 Scope: Phase 1 = SKILL.md. Phase 2 = webapp multi-turn.
 Related: [DESIGN.md](DESIGN.md) documents the system as built.
@@ -122,6 +122,15 @@ Error handling and UX
 Implementation outline
 ----------------------
 
+**Implemented (v2.3.0) — 1a, with one deviation from the plan below.** The stage-5 pause was
+*not* added. SKILL.md already states that Modules 3 and 4 run together with no checkpoint between
+them because both are cheap, and a new pause would have contradicted that for no token saving —
+the cost of getting outreach targeting wrong is a wasted set of variants, not a wasted search.
+Instead the choice moved onto the **existing Checkpoint 2**, where the user is already stopped and
+already looking at a numbered, confidence-rated profile table. No new pause, no new rule competing
+for attention, and the user picks with the same information a stage-5 pause would have shown them.
+The default (top-confidence profile) is unchanged, so `auto` and the hosted demo are unaffected.
+
 **Recommended sequencing.** Split phase 1. Do **1a — outreach candidate selection** (steps 2, 3
 and 5 below) first: it addresses the one goal with proven waste, it is small, and it cannot regress
 the consent gates because it does not touch the checkpoint machinery. Hold **1b — the run-policy
@@ -133,9 +142,9 @@ an unmeasured saving.
 
 1. Rewrite the Checkpoints section around the gate/input/consent taxonomy and the run policy.
    Keep it at or under its current ~50 lines — replace, don't append.
-2. Add the stage-5 input pause (candidate selection) and update Module 4's scope text at
-   SKILL.md:480–485, which currently hardcodes "the single highest-confidence profile".
-   Cap multi-candidate outreach (suggest 3) so cost stays bounded.
+2. ~~Add the stage-5 input pause (candidate selection)~~ **Done in v2.3.0, via Checkpoint 2
+   instead — see the implementation note above.** Module 4's scope text no longer hardcodes "the
+   single highest-confidence profile"; multi-candidate outreach is capped at 3.
 3. Update DESIGN.md — the goal statement at :19–23 and the pipeline diagram at :85–104 both encode
    the three-checkpoint structure.
 4. Replace the webapp harness note's prose override (PR #73) with a policy declaration:

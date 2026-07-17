@@ -1,7 +1,7 @@
 # tech-sourcing-skill
 
 [![CI](https://github.com/Da6ka/tech-sourcing-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/Da6ka/tech-sourcing-skill/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/Da6ka/tech-sourcing-skill)](https://github.com/Da6ka/tech-sourcing-skill/releases/tag/v2.2.2)
+[![Release](https://img.shields.io/github/v/release/Da6ka/tech-sourcing-skill)](https://github.com/Da6ka/tech-sourcing-skill/releases/tag/v2.3.0)
 
 > Renamed from `linkedin-sourcing-skill` in v2.0.0 to reflect the broader, mostly-tech multi-platform scope. The old repo name now redirects here automatically.
 

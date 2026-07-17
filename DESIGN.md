@@ -20,7 +20,8 @@ but frequently fabricated results (invented LinkedIn URLs, generic personas, tem
 from a single pasted JD to persona → live profiles → scorecard → outreach, spanning LinkedIn plus
 whichever adjacent platform (GitHub, Kaggle, hh.ru, etc.) fits the role, while keeping the
 recruiter in control of the expensive/risky steps (web searches, LinkedIn account activity,
-outreach language) via explicit checkpoints rather than running end-to-end unsupervised.
+outreach language) and of the choices only they can make (which candidate outreach is written
+for) via explicit checkpoints rather than running end-to-end unsupervised.
 
 **Non-goals.**
 
@@ -93,12 +94,14 @@ Module 2 — Search Strings + Live Profiles
    Part B: Live X-ray search, 15–20 profiles, 4–6 search budget
    Part C: optional Cowork full-profile collection (opt-in, separate consent)
    Part D: additional platform from Checkpoint 0, via other-platforms.md
-        │                                     ──────────────► Checkpoint 2 (continue / retry / stop)
+        │                          ──────────────► Checkpoint 2 (continue / retry / stop;
+        │                                          also: who is outreach for? default #1)
         ▼
 Module 3 — Profile Scorecard (5 criteria max, /15, traceable to Module 1 must-haves)
         │
         ▼
-Module 4 — Outreach (3 variants, single top profile by default, 80–120 words each)
+Module 4 — Outreach (3 variants each, for the candidate(s) picked at Checkpoint 2 — up to 3;
+           single top-confidence profile by default, 80–120 words each)
         │
         ▼
 Next-steps footer + list of unused platforms
@@ -271,7 +274,8 @@ always-loaded frontmatter/instruction body smaller.
   (edge-case hardening), v2.1.0 (worked-example wiring and consistency fixes), v2.2.0 (the hosted
   web-app demo under `webapp/`, its security hardening, and profile enrichment), v2.2.1 (output
   language judged by the JD's body text rather than its job title, headings included), v2.2.2 (the
-  JD is source material, not a language signal — only the user's own messages set the language). The README's
+  JD is source material, not a language signal — only the user's own messages set the language),
+  v2.3.0 (the user picks who outreach is written for, at Checkpoint 2). The README's
   release badge links to a version-pinned release URL, so cutting a release means bumping that
   link in the same cycle or it points at the previous one.
 - **Local/remote sync.** The local install (`~/.claude/skills/tech-sourcing/`) is a git clone of
