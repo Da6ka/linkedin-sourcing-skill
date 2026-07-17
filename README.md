@@ -16,14 +16,17 @@ When triggered (e.g. by pasting a JD, asking to "find candidates", "source for t
 3. Finds real profiles via web search across the selected sources
 4. Offers an optional, opt-in step to collect full LinkedIn profile text into a candidate tracker via the [Cowork](https://claude.com/product/cowork) browser — presented with a risk disclaimer and only generated if you say yes (requires Cowork and a logged-in LinkedIn session; see Part C in `SKILL.md` and "Avoiding LinkedIn account restrictions" below)
 5. Scores candidates against the persona
-6. Drafts personalised outreach messages
+6. Drafts personalised outreach messages — for whoever you pick from the candidate table (up to
+   three); by default, the single highest-confidence profile
 7. Lists which other sources weren't used, in case you want another round on a different platform
 
 See [SKILL.md](SKILL.md) for the full instructions, and [references/](references/) for the boolean search guide and outreach examples used by the skill.
 
-**Note:** outreach messages, profile tables, and other templates default to English, but the
-skill matches whatever language you or the JD are written in; see "Output language" in
-`SKILL.md`.
+**Note:** output defaults to English and matches whatever language **you** write in — a Russian
+JD pasted by someone writing in English gets an English run, since the JD is source material
+rather than a signal for how you want to be addressed. Outreach messages are the exception: they
+follow the candidate's likely language, with a one-line note when that differs from the rest. See
+"Output language" in `SKILL.md`.
 
 ## Install
 
