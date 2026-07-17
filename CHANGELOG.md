@@ -1,5 +1,33 @@
 # Changelog
 
+## 2026-07-17 — A JD is source material, not a language signal (v2.2.2)
+
+v2.2.1 fixed the wrong half of the rule. "Output language" said to write in English by default and
+to match another language if *either* the user was clearly writing in one *or* the JD/briefing was
+in one. Those are two different signals joined by an `or`, and the JD half meant a piece of input
+data decided what language the user got spoken to in: paste a Russian JD while writing in English,
+get a Russian report. v2.2.1 made that branch work more reliably, which was the wrong direction.
+
+The JD branch is gone. Only the user's own messages set the output language; a JD, briefing, or
+profile is source material to work from, not a sample of how the user wants to be addressed. A
+Russian JD pasted by someone writing in English now gets an English run. Where a JD is the only
+input and there is no user message to judge — the hosted demo, where the API call carries nothing
+else — the English default applies.
+
+What survives from v2.2.1: section headings are still named explicitly in the rule, and mixing is
+still forbidden («Part A — Boolean строки» was the real artifact). The Module 4 exception is
+unchanged in substance, but its example is realigned — it described a Russian JD producing a
+Russian persona, which is exactly what this release stops.
+
+The demo's `isCyrillicJd` helper is removed rather than kept: with the JD no longer a language
+signal, the turn-cap note is unconditionally English and there was nothing left to detect.
+
+Also closes a gap in the anglicism rule, which carried one example («наблюдение», not «финдинг») —
+too few to generalise from, so the skill emitted «сеньорность» while obeying the rule as written.
+It now names that calque and, more importantly, carves out established loanwords: «кандидат»,
+«гипотеза», «воронка», «локация», «стек», «аутрич» are ordinary Russian and stay, so the rule
+cannot over-correct its way into stilted prose.
+
 ## 2026-07-17 — Match the JD's language by its body text, not its job title (v2.2.1)
 
 A Russian JD came back with English section headings over Russian prose. SKILL.md's "Output

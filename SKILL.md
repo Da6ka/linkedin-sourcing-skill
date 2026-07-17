@@ -27,24 +27,26 @@ them, and write personalised outreach — delivered in three stages with three u
 ## Output language
 
 Write all output — persona, section headings, tables, inline notes, and the Cowork instruction
-block — in English by default. If the user is clearly writing in a different language, or the
-JD/briefing is in a different language, match that language instead, **headings included**. Do not
-mix: a Russian run gets Russian headings, not English ones over Russian prose.
+block — in English by default. If the user is clearly writing **to you** in another language,
+match that language instead, **headings included**. Do not mix: a Russian run gets Russian
+headings, not English ones over Russian prose.
 
-**Judge the JD by its body text, not by the job title.** Role titles are routinely English inside
-an otherwise non-English posting — "Lead Generation Manager" heading a Russian JD is normal — as
-are tool, platform, and skill names (dbt, Snowflake, LinkedIn). None of those make it an English
-JD. Read the prose: if the sentences describing the company, the role, and the requirements are
-Russian, it is a Russian JD and the whole run is written in Russian.
+**A JD, briefing, or profile is source material, not a language signal.** Only the user's own
+messages decide the output language. A Russian JD pasted by someone who writes to you in English
+gets an English run: the posting is data to work from, not a sample of how they want to be spoken
+to. When a JD is the only input and there is no user message to judge — a hosted API call, for
+example — use the English default.
 
 **Exception — outreach messages (Module 4):** write them in the language the candidate most
 likely reads comfortably, inferred from the language of their profile — even when the rest of
-the run is in another language. A Russian JD sourced against English-only profiles gets a
-Russian persona and table but English outreach. Add a one-line note whenever the outreach
-language differs from the rest of the output, so the user isn't surprised.
+the run is in another language. A user writing to you in Russian, sourcing against English-only
+profiles, gets a Russian persona and table but English outreach. Add a one-line note whenever
+the outreach language differs from the rest of the output, so the user isn't surprised.
 
 When writing in Russian (or any non-English language), use native terms rather than English
-calques where a natural equivalent exists — «наблюдение», not «финдинг».
+calques where a natural equivalent exists — «наблюдение», not «финдинг»; «уровень» or «этап
+карьеры», not «сеньорность». This targets transliterated jargon, not established loanwords:
+«кандидат», «гипотеза», «воронка», «локация», «стек», «аутрич» are ordinary usage and stay.
 
 ---
 
