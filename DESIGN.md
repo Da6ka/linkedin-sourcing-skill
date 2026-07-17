@@ -270,7 +270,8 @@ always-loaded frontmatter/instruction body smaller.
   to `tech-sourcing-skill`, reflecting the platform expansion beyond LinkedIn-only), v2.0.1
   (edge-case hardening), v2.1.0 (worked-example wiring and consistency fixes), v2.2.0 (the hosted
   web-app demo under `webapp/`, its security hardening, and profile enrichment), v2.2.1 (output
-  language judged by the JD's body text rather than its job title, headings included). The README's
+  language judged by the JD's body text rather than its job title, headings included), v2.2.2 (the
+  JD is source material, not a language signal — only the user's own messages set the language). The README's
   release badge links to a version-pinned release URL, so cutting a release means bumping that
   link in the same cycle or it points at the previous one.
 - **Local/remote sync.** The local install (`~/.claude/skills/tech-sourcing/`) is a git clone of

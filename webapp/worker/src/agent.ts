@@ -55,19 +55,6 @@ export interface AgentEnv {
   APOLLO_API_KEY: string;
 }
 
-// SKILL.md's "Output language" rule makes the model write the run in the JD's language, but the
-// turn-cap note below is appended by the Worker after the agent is out of turns, so no model call
-// can write it and the language has to be decided in code. Judge the body's letters, not the job
-// title, which is routinely English inside a Russian posting ("Lead Generation Manager"), as are
-// tool names. This distinguishes Russian from English only — the rule the model follows covers
-// every language, this fallback covers the one that occurs in practice.
-function isCyrillicJd(jobDescription: string): boolean {
-  const letters = jobDescription.match(/\p{L}/gu)?.length ?? 0;
-  if (letters === 0) return false;
-  const cyrillic = jobDescription.match(/\p{Script=Cyrillic}/gu)?.length ?? 0;
-  return cyrillic / letters > 0.2;
-}
-
 export async function runSourcingAgent(
   env: AgentEnv,
   jobDescription: string,
@@ -178,14 +165,12 @@ export async function runSourcingAgent(
       `Agent exceeded max turns (${MAX_AGENT_TURNS}) without producing any text`,
     );
   }
+  // English, unconditionally: a hosted API call carries no user message, so SKILL.md's
+  // "Output language" default applies to the whole run and there is no language to detect.
   sections.push(
-    isCyrillicJd(jobDescription)
-      ? `---\n\n**Примечание:** запуск достиг предела в ${MAX_AGENT_TURNS} шагов и остановился ` +
-        `раньше, чем агент завершил работу, — часть разделов выше может отсутствовать или быть ` +
-        `неполной. Более конкретное описание вакансии сужает поиск и обычно укладывается в предел.`
-      : `---\n\n**Note:** this run hit its ${MAX_AGENT_TURNS}-turn limit before the agent ` +
-        `finished, so the workflow above stops short — later stages may be missing or incomplete. ` +
-        `A more specific job description narrows the search and usually completes within the limit.`,
+    `---\n\n**Note:** this run hit its ${MAX_AGENT_TURNS}-turn limit before the agent finished, ` +
+      `so the workflow above stops short — later stages may be missing or incomplete. ` +
+      `A more specific job description narrows the search and usually completes within the limit.`,
   );
   return sections.join("\n\n");
 }
