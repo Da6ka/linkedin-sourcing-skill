@@ -155,5 +155,20 @@ export async function runSourcingAgent(
     messages.push({ role: "user", content: toolResults });
   }
 
-  throw new Error("Agent exceeded max turns without finishing");
+  // Hitting the turn cap used to be cheap: only the final turn's text was ever returned, so
+  // there was nothing worth salvaging. Now that every turn's text is collected, throwing here
+  // would discard a substantial write-up — persona, Boolean strings, profiles — that the caller
+  // already waited two minutes and a full Opus run for, and hand them a 500 instead. Return what
+  // the agent did produce, flagged as incomplete, and fail only when there is genuinely nothing.
+  if (sections.length === 0) {
+    throw new Error(
+      `Agent exceeded max turns (${MAX_AGENT_TURNS}) without producing any text`,
+    );
+  }
+  sections.push(
+    `---\n\n**Note:** this run hit its ${MAX_AGENT_TURNS}-turn limit before the agent finished, ` +
+      `so the workflow above stops short — later stages may be missing or incomplete. ` +
+      `A more specific job description narrows the search and usually completes within the limit.`,
+  );
+  return sections.join("\n\n");
 }
